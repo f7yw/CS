@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -10,9 +11,12 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Eye, EyeOff, User, Mail, Lock, ArrowLeft, GraduationCap, Briefcase } from "lucide-react"
 import Link from "next/link"
 import { useToast } from "@/hooks/use-toast"
-import { validateUserRegistration, sanitizeInput } from "@/lib/validation"
+import { sanitizeInput } from "@/lib/validation"
 
 export default function RegisterPage() {
+  const router = useRouter()
+  const { toast } = useToast()
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,91 +31,151 @@ export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [errors, setErrors] = useState<Record<string, string[]>>({})
 
-  const { toast } = useToast()
-
   const handleInputChange = (field: string, value: string | boolean) => {
-    if (typeof value === "string") {
-      value = sanitizeInput(value)
-    }
-    setFormData((prev) => ({ ...prev, [field]: value }))
-    if (errors[field]) {
-      setErrors((prev) => ({ ...prev, [field]: [] }))
-    }
+    const v = typeof value === "string" ? sanitizeInput(value) : value
+    setFormData((prev) => ({ ...prev, [field]: v }))
+    if (errors[field]) setErrors((prev) => ({ ...prev, [field]: [] }))
+    if (errors.general) setErrors((prev) => ({ ...prev, general: [] }))
   }
 
-  const validateForm = () => {
-    const validationResult = validateUserRegistration(formData)
-    if (formData.password !== formData.confirmPassword) {
-      validationResult.errors.push("Passwords do not match")
-      validationResult.isValid = false
-    }
+  const runClientValidation = (data: typeof formData) => {
     const fieldErrors: Record<string, string[]> = {}
-    validationResult.errors.forEach((error) => {
-      const [field, message] = error.includes(":") ? error.split(": ") : ["general", error]
-      if (!fieldErrors[field]) fieldErrors[field] = []
-      fieldErrors[field].push(message || error)
-    })
-    setErrors(fieldErrors)
-    return validationResult.isValid
+
+    // name
+    if (!data.name || data.name.trim().length < 2) {
+      fieldErrors.name = ["Please enter your full name (at least 2 characters)."]
+    }
+
+    // email (simple robust check)
+    const email = (data.email || "").trim().toLowerCase()
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!email || !emailRegex.test(email)) {
+      fieldErrors.email = ["Please enter a valid email address."]
+    }
+
+    // password rules
+    const pw = data.password || ""
+    const confirm = data.confirmPassword || ""
+    const pwErrors: string[] = []
+    if (pw.length < 8) pwErrors.push("Password must be at least 8 characters long.")
+    if (!/[a-z]/.test(pw)) pwErrors.push("Password must contain at least one lowercase letter.")
+    if (!/[A-Z]/.test(pw)) pwErrors.push("Password must contain at least one uppercase letter.")
+    if (!/[0-9]/.test(pw)) pwErrors.push("Password must contain at least one digit.")
+    if (!/[!@#$%^&*()_\-+={}[\]|\\;:'\"<>,.?/~`]/.test(pw)) pwErrors.push("Password must contain at least one special character.")
+    if (pwErrors.length) fieldErrors.password = pwErrors
+
+    // confirm password
+    if (confirm !== pw) {
+      fieldErrors.confirmPassword = ["Passwords do not match."]
+    }
+
+    // agree to terms
+    if (!data.agreeToTerms) {
+      fieldErrors.agreeToTerms = ["You must agree to the terms."]
+    }
+
+    const isValid = Object.keys(fieldErrors).length === 0
+    return { isValid, fieldErrors }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!validateForm()) {
+    setIsLoading(true)
+
+    const normalizedEmail = (formData.email || "").trim().toLowerCase()
+    const normalized: typeof formData = {
+      ...formData,
+      email: normalizedEmail,
+    }
+
+    const clientValidation = runClientValidation(normalized)
+    if (!clientValidation.isValid) {
+      setErrors(clientValidation.fieldErrors)
       toast({
         title: "Validation Error",
         description: "Please fix the errors below and try again.",
         variant: "destructive",
       })
+      setIsLoading(false)
       return
     }
-    setIsLoading(true)
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-      const storedUsers = JSON.parse(localStorage.getItem("registered_users") || "[]")
-      const existingUser = storedUsers.find((u: any) => u.email === formData.email)
+      await new Promise((resolve) => setTimeout(resolve, 700))
+
+      let storedUsers: any[] = []
+      try {
+        const raw = localStorage.getItem("registered_users")
+        storedUsers = raw ? JSON.parse(raw) : []
+        if (!Array.isArray(storedUsers)) storedUsers = []
+      } catch (err) {
+        console.error("Failed parsing registered_users:", err)
+        storedUsers = []
+      }
+
+      const existingUser = storedUsers.find(
+        (u: any) => (u.email || "").toString().trim().toLowerCase() === normalizedEmail
+      )
       if (existingUser) {
+        setErrors((prev) => ({ ...prev, email: ["An account with this email already exists."] }))
         toast({
           title: "Registration failed",
           description: "An account with this email already exists.",
           variant: "destructive",
         })
+        setIsLoading(false)
         return
       }
+
       const newUser = {
         id: `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-        userType: formData.userType,
+        name: normalized.name,
+        email: normalizedEmail,
+        password: normalized.password,
+        userType: normalized.userType,
         registrationDate: new Date().toISOString(),
         isVerified: false,
       }
+
       storedUsers.push(newUser)
-      localStorage.setItem("registered_users", JSON.stringify(storedUsers))
-      const emailData = {
-        to: formData.email,
-        subject: "Welcome to NextStep Navigator!",
-        template: "welcome",
-        data: {
-          name: formData.name,
-          userType: formData.userType,
-        },
+      try {
+        localStorage.setItem("registered_users", JSON.stringify(storedUsers))
+      } catch (err) {
+        console.error("Failed saving registered_users:", err)
+        toast({
+          title: "Registration error",
+          description: "Could not save user data locally. Please check browser storage settings.",
+          variant: "destructive",
+        })
+        setIsLoading(false)
+        return
       }
-      const emails = JSON.parse(localStorage.getItem("outgoing_emails") || "[]")
-      emails.push({
-        ...emailData,
-        timestamp: new Date().toISOString(),
-        status: "sent",
-      })
-      localStorage.setItem("outgoing_emails", JSON.stringify(emails))
+
+      // emulate sending welcome email by storing outgoing_emails
+      try {
+        const rawEmails = localStorage.getItem("outgoing_emails")
+        const emails = rawEmails ? JSON.parse(rawEmails) : []
+        const emailData = {
+          to: normalizedEmail,
+          subject: "Welcome to NextStep Navigator!",
+          template: "welcome",
+          data: { name: normalized.name, userType: normalized.userType },
+          timestamp: new Date().toISOString(),
+          status: "sent",
+        }
+        const out = Array.isArray(emails) ? emails : []
+        out.push(emailData)
+        localStorage.setItem("outgoing_emails", JSON.stringify(out))
+      } catch (err) {
+        console.error("Failed saving outgoing_emails:", err)
+      }
+
       toast({
         title: "Registration successful!",
-        description: "Your account has been created. Please check your email for verification.",
+        description: "Your account has been created. Redirecting to sign-in...",
       })
-      setTimeout(() => {
-        window.location.href = "/auth/login"
-      }, 2000)
+
+      router.push("/auth/login?registered=1&success=1")
     } catch (error) {
       console.error("[v0] Registration error:", error)
       toast({
@@ -153,9 +217,10 @@ export default function RegisterPage() {
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="name"
+                    name="name"
                     type="text"
                     value={formData.name}
-                    onChange={(e) => handleInputChange("name", e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange("name", e.target.value)}
                     placeholder="Enter your full name"
                     className="pl-10"
                     required
@@ -174,9 +239,10 @@ export default function RegisterPage() {
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="email"
+                    name="email"
                     type="email"
                     value={formData.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange("email", e.target.value)}
                     placeholder="your.email@example.com"
                     className="pl-10"
                     required
@@ -223,23 +289,29 @@ export default function RegisterPage() {
                 </Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input
+                  <input
                     id="password"
+                    name="password"
                     type={showPassword ? "text" : "password"}
                     value={formData.password}
                     onChange={(e) => handleInputChange("password", e.target.value)}
                     placeholder="Create a strong password"
-                    className="pl-10 pr-10"
+                    className="pl-10 pr-10 w-full rounded-md h-10 border border-border bg-transparent"
                     required
+                    aria-describedby="password-requirements"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    aria-label={showPassword ? "Hide password" : "Show password"}
                   >
                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
                 </div>
+                <p id="password-requirements" className="text-xs text-muted-foreground">
+                  Password must be at least 8 characters and include lowercase, uppercase, number & special character.
+                </p>
                 {errors.password && errors.password.length > 0 && (
                   <div className="space-y-1">
                     {errors.password.map((error, index) => (
@@ -257,19 +329,21 @@ export default function RegisterPage() {
                 </Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input
+                  <input
                     id="confirmPassword"
+                    name="confirmPassword"
                     type={showConfirmPassword ? "text" : "password"}
                     value={formData.confirmPassword}
                     onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
                     placeholder="Confirm your password"
-                    className="pl-10 pr-10"
+                    className="pl-10 pr-10 w-full rounded-md h-10 border border-border bg-transparent"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
                   >
                     {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
@@ -299,6 +373,10 @@ export default function RegisterPage() {
               </div>
               {errors.agreeToTerms && errors.agreeToTerms.length > 0 && (
                 <p className="text-sm text-destructive">{errors.agreeToTerms[0]}</p>
+              )}
+
+              {errors.general && errors.general.length > 0 && (
+                <p className="text-sm text-destructive">{errors.general[0]}</p>
               )}
 
               <Button type="submit" className="w-full" disabled={isLoading}>

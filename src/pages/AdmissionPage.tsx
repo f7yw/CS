@@ -7,28 +7,28 @@ import { Badge } from "@/components/ui/badge"
 export default function AboutPage() {
   const teamMembers = [
     {
-      name: "Dr. Sarah Rodriguez",
+      name: "Dr. FARES",
       role: "Founder & Lead Career Counselor",
       bio: "With over 15 years of experience in career counseling and educational psychology, Dr. Rodriguez founded NextStep Navigator to make career guidance accessible to everyone.",
       expertise: ["Career Psychology", "Educational Guidance", "Leadership Development"],
       initials: "SR",
     },
     {
-      name: "Michael Johnson",
+      name: "Eng. ABDULRAHMAN",
       role: "Industry Relations Specialist",
       bio: "Michael brings 12 years of corporate experience across tech, healthcare, and finance industries, providing real-world insights into career opportunities.",
       expertise: ["Industry Trends", "Corporate Relations", "Professional Development"],
       initials: "MJ",
     },
     {
-      name: "Dr. Priya Patel",
+      name: "Eng. OMAR",
       role: "Educational Pathways Advisor",
       bio: "Former university admissions director with expertise in international education and study abroad programs.",
       expertise: ["Higher Education", "Study Abroad", "Academic Planning"],
       initials: "PP",
     },
     {
-      name: "James Chen",
+      name: "Eng. AL-BRAA",
       role: "Technology & Innovation Lead",
       bio: "Software engineer turned career coach, specializing in tech careers and the future of work in digital industries.",
       expertise: ["Tech Careers", "Digital Skills", "Innovation"],

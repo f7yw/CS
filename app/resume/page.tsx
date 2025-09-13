@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FileText, Download, CheckCircle, Star, ArrowRight, Copy, ChevronDown } from "lucide-react";
@@ -9,60 +9,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
-import { BreadcrumbNav } from "@/components/navigation/breadcrumb";
-
-function DownloadButton({
-  onClick,
-  children,
-  className = "",
-}: {
-  onClick?: () => void;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([]);
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const target = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - target.left;
-    const y = e.clientY - target.top;
-    const id = Date.now();
-    setRipples((r) => [...r, { id, x, y }]);
-    setTimeout(() => setRipples((r) => r.filter((i) => i.id !== id)), 600);
-    onClick?.();
-  };
-  return (
-    <motion.button
-      onClick={handleClick}
-      whileTap={{ scale: 0.98, boxShadow: "0 0 0 10px rgba(107,114,128,0.2)" }}
-      className={
-        "relative overflow-hidden w-full inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm font-medium shadow hover:shadow-md transition " +
-        className
-      }
-    >
-      {ripples.map((r) => (
-        <span
-          key={r.id}
-          className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-gray-400/30"
-          style={{
-            left: r.x,
-            top: r.y,
-            width: 10,
-            height: 10,
-            animation: "resume-ripple 0.6s ease-out forwards",
-          }}
-          aria-hidden
-        />
-      ))}
-      {children}
-      <style jsx>{`
-        @keyframes resume-ripple {
-          0% { transform: translate(-50%, -50%) scale(0); opacity: 0.6; }
-          100% { transform: translate(-50%, -50%) scale(12); opacity: 0; }
-        }
-      `}</style>
-    </motion.button>
-  );
-}
 
 type ResumeData = {
   stats: { value: string; label: string; accent: "blue" | "green" | "purple" }[];
@@ -87,20 +33,80 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.35 } },
 };
 
+function DownloadButton({
+  onClick,
+  children,
+  className = "",
+}: {
+  onClick?: () => void;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([]);
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const target = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - target.left;
+    const y = e.clientY - target.top;
+    const id = Date.now();
+    setRipples((r) => [...r, { id, x, y }]);
+    setTimeout(() => setRipples((r) => r.filter((i) => i.id !== id)), 600);
+    onClick?.();
+  };
+
+  return (
+    <motion.button
+      type="button"
+      aria-label="Download template"
+      onClick={handleClick}
+      whileTap={{ scale: 0.98, boxShadow: "0 0 0 10px rgba(107,114,128,0.12)" }}
+      className={
+        "relative overflow-hidden w-full inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm font-medium shadow hover:shadow-md transition " +
+        className
+      }
+    >
+      {ripples.map((r) => (
+        <span
+          key={r.id}
+          className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-gray-400/30"
+          style={{
+            left: r.x,
+            top: r.y,
+            width: 12,
+            height: 12,
+            animation: "resume-ripple 0.6s ease-out forwards",
+          }}
+          aria-hidden
+        />
+      ))}
+      {children}
+
+      <style jsx>{`
+        @keyframes resume-ripple {
+          0% { transform: translate(-50%, -50%) scale(0); opacity: 0.6; }
+          100% { transform: translate(-50%, -50%) scale(12); opacity: 0; }
+        }
+      `}</style>
+    </motion.button>
+  );
+}
+
 function AnimatedCounter({ value, duration = 900 }: { value: string; duration?: number }) {
   const nf = useMemo(() => new Intl.NumberFormat("en-US"), []);
-  const num = Number(String(value).replace(/[^\d]/g, "")) || 0;
+  const num = Number((String(value).match(/\d+/) || [0])[0]) || 0;
   const [n, setN] = useState(0);
 
   useEffect(() => {
+    let raf = 0;
     const start = performance.now();
     const step = (t: number) => {
       const p = Math.min(1, (t - start) / duration);
       const eased = 1 - Math.pow(1 - p, 3);
       setN(Math.round(num * eased));
-      if (p < 1) requestAnimationFrame(step);
+      if (p < 1) raf = requestAnimationFrame(step);
     };
-    requestAnimationFrame(step);
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
   }, [num, duration]);
 
   const parts = String(value).split(/(\d+)/);
@@ -125,52 +131,69 @@ export default function ResumePage() {
   const [formatFilter, setFormatFilter] = useState<"ALL" | "PDF" | "DOCX">("ALL");
 
   useEffect(() => {
+    let mounted = true;
     const run = async () => {
       try {
         const res = await fetch("/data/resume.json", { cache: "no-store" });
+        if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
         const json: ResumeData = await res.json();
-        setData(json);
+        if (mounted) setData(json);
       } catch (e) {
         console.error("Failed to load /data/resume.json", e);
       } finally {
-        setLoading(false);
+        if (mounted) setLoading(false);
       }
     };
     run();
-    const rv = JSON.parse(localStorage.getItem("recentlyViewedTemplates") || "[]");
-    setRecent(rv);
+
+    try {
+      const raw = localStorage.getItem("recentlyViewedTemplates");
+      const rv = raw ? JSON.parse(raw) : [];
+      if (Array.isArray(rv)) setRecent(rv.slice(0, 6));
+    } catch (err) {
+      localStorage.removeItem("recentlyViewedTemplates");
+      setRecent([]);
+    }
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
-  const onDownload = (tplName: string, url: string) => {
-    const a = document.createElement("a");
-    a.href = url;
-    const urlName = url.split("/").pop() || "";
-    const hasExt = /\.[a-z0-9]+$/i.test(urlName);
-    const fallback = tplName.trim().replace(/\s+/g, "_");
-    a.download = hasExt ? urlName : `${fallback}`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+  const onDownload = useCallback(
+    (tplName: string, url: string) => {
+      const a = document.createElement("a");
+      a.href = url;
+      const urlName = url.split("/").pop() || "";
+      const hasExt = /\.[a-z0-9]+$/i.test(urlName);
+      const fallback = tplName.trim().replace(/\s+/g, "_");
+      a.download = hasExt ? urlName : `${fallback}`;
+      a.rel = "noopener noreferrer";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
 
-    toast({
-      title: "Download started",
-      description: `“${tplName}” is downloading. Check your browser downloads.`,
-      duration: 2500,
-    });
+      toast({
+        title: "Download started",
+        description: `“${tplName}” is downloading. Check your browser downloads.`,
+        duration: 2500,
+      });
 
-    setRecent((prev) => {
-      const next = [tplName, ...prev.filter((n) => n !== tplName)].slice(0, 6);
-      localStorage.setItem("recentlyViewedTemplates", JSON.stringify(next));
-      return next;
-    });
-  };
+      setRecent((prev) => {
+        const next = [tplName, ...prev.filter((n) => n !== tplName)].slice(0, 6);
+        try {
+          localStorage.setItem("recentlyViewedTemplates", JSON.stringify(next));
+        } catch (e) {
+          // ignore
+        }
+        return next;
+      });
+    },
+    [toast]
+  );
 
   const accentMap = useMemo(
-    () => ({
-      blue: "text-blue-600 bg-blue-100",
-      green: "text-green-600 bg-green-100",
-      purple: "text-purple-600 bg-purple-100",
-    }),
+    () => ({ blue: "text-blue-600 bg-blue-100", green: "text-green-600 bg-green-100", purple: "text-purple-600 bg-purple-100" }),
     []
   );
 
@@ -197,32 +220,17 @@ export default function ResumePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <BreadcrumbNav />
-
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background">
       <div className="container mx-auto px-4 py-8">
-        <motion.div
-          initial={{ opacity: 0, y: 8, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
-        >
+        <motion.div initial={{ opacity: 0, y: 8, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.5 }} className="text-center mb-12">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
             <FileText className="h-8 w-8 text-blue-600" />
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Resume Guidelines</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Create a professional resume that showcases your skills and gets you noticed by employers.
-          </p>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">Create a professional resume that showcases your skills and gets you noticed by employers.</p>
         </motion.div>
 
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
-        >
+        <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.4 }} className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {data.stats.map((s, i) => (
             <motion.div key={i} variants={item}>
               <Card className="text-center bg-card hover:bg-card/70 hover:backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5 transition-all">
@@ -248,6 +256,7 @@ export default function ResumePage() {
                 {data.sections.map((s, i) => (
                   <button
                     key={i}
+                    type="button"
                     onClick={() => {
                       document.getElementById(`sec-${i}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
                     }}
@@ -266,26 +275,13 @@ export default function ResumePage() {
               <CardDescription>Learn how to craft each section of your resume for maximum impact.</CardDescription>
             </CardHeader>
             <CardContent>
-              <motion.div
-                variants={stagger}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.25 }}
-                className="space-y-6"
-              >
+              <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }} className="space-y-6">
                 {data.sections.map((section, index) => (
-                  <motion.div
-                    key={index}
-                    variants={item}
-                    id={`sec-${index}`}
-                    className="group relative rounded-xl border bg-white/80 hover:bg-white/60 hover:backdrop-blur-sm transition-colors p-5 shadow-sm"
-                  >
+                  <motion.div key={index} variants={item} id={`sec-${index}`} className="group relative rounded-xl border bg-white/80 hover:bg-white/60 hover:backdrop-blur-sm transition-colors p-5 shadow-sm">
                     <span className="absolute left-0 top-6 h-10 w-1 rounded-r bg-gradient-to-b from-blue-500 to-indigo-500" />
 
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-blue-100 text-blue-700 text-sm font-bold">
-                        {new Intl.NumberFormat("en-US").format(index + 1)}
-                      </span>
+                      <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-blue-100 text-blue-700 text-sm font-bold">{new Intl.NumberFormat("en-US").format(index + 1)}</span>
                       <h3 className="text-lg md:text-xl font-semibold text-gray-900">{section.title}</h3>
                     </div>
 
@@ -307,13 +303,7 @@ export default function ResumePage() {
                       <div className="rounded-lg border bg-gray-50 hover:bg-gray-100/70 transition-colors p-4">
                         <div className="flex items-center justify-between">
                           <h4 className="font-medium text-gray-900">Example</h4>
-                          <button
-                            onClick={() => {
-                              navigator.clipboard.writeText(section.example || "");
-                              toast({ title: "Copied", description: "Example copied to clipboard." });
-                            }}
-                            className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-md border bg-white hover:bg-gray-50 transition"
-                          >
+                          <button type="button" onClick={() => { navigator.clipboard.writeText(section.example || ""); toast({ title: "Copied", description: "Example copied to clipboard." }); }} className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-md border bg-white hover:bg-gray-50 transition">
                             <Copy className="h-3.5 w-3.5" /> Copy
                           </button>
                         </div>
@@ -342,98 +332,66 @@ export default function ResumePage() {
           <CardContent>
             <div className="mb-6 flex flex-wrap gap-2">
               {(["ALL", "PDF", "DOCX"] as const).map((k) => (
-                <Button
-                  key={k}
-                  variant={formatFilter === k ? "default" : "outline"}
-                  size="sm"
-                  className={formatFilter === k ? "" : "bg-transparent"}
-                  onClick={() => setFormatFilter(k)}
-                >
+                <Button key={k} variant={formatFilter === k ? "default" : "outline"} size="sm" className={formatFilter === k ? "" : "bg-transparent"} onClick={() => setFormatFilter(k)}>
                   {k}
                 </Button>
               ))}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {data.templates
-                .filter((t) => (formatFilter === "ALL" ? true : t.format === formatFilter))
-                .map((t, i) => (
-                  <motion.div
-                    key={`${t.name}-${i}`}
-                    initial={{ opacity: 0, y: 8 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -4 }}
-                    transition={{ duration: 0.25 }}
-                  >
-                    <Card className="h-full border bg-white/80 hover:bg-gradient-to-br hover:from-blue-50 hover:to
-                    -indigo-50 hover:backdrop-blur-sm transition-all duration
-                    -300 shadow-sm hover:shadow-xl rounded-xl border-gray-100 hover:border-gray-200">
-                      <CardHeader>
-                        <CardTitle className="text-lg">{t.name}</CardTitle>
-                        <CardDescription>{t.description}</CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-4">
-                        <div>
-                          <h4 className="font-medium text-gray-900 mb-2">Features:</h4>
-                          <ul className="space-y-1">
-                            {t.features.map((f, idx) => (
-                              <li key={idx} className="flex items-center gap-2">
-                                <Star className="h-4 w-4 text-yellow-500" />
-                                <span className="text-sm text-gray-600">{f}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+              {data.templates.filter((t) => (formatFilter === "ALL" ? true : t.format === formatFilter)).map((t, i) => (
+                <motion.div key={`${t.name}-${i}`} initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} whileHover={{ y: -4 }} transition={{ duration: 0.25 }}>
+                  <Card className="h-full border bg-white/80 hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:backdrop-blur-sm transition-all duration-300 shadow-sm hover:shadow-xl rounded-xl border-gray-100 hover:border-gray-200">
+                    <CardHeader>
+                      <CardTitle className="text-lg">{t.name}</CardTitle>
+                      <CardDescription>{t.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div>
+                        <h4 className="font-medium text-gray-900 mb-2">Features:</h4>
+                        <ul className="space-y-1">
+                          {t.features.map((f, idx) => (
+                            <li key={idx} className="flex items-center gap-2">
+                              <Star className="h-4 w-4 text-yellow-500" />
+                              <span className="text-sm text-gray-600">{f}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-                        <div className="flex items-center justify-between text-xs text-muted-foreground">
-                          <span>{t.format}</span>
-                          {t.size ? <span>{t.size}</span> : null}
-                        </div>
+                      <div className="flex items-center justify-between text-xs text-muted-foreground">
+                        <span>{t.format}</span>
+                        {t.size ? <span>{t.size}</span> : null}
+                      </div>
 
-                        <div className="flex gap-2">
-                          <DownloadButton onClick={() => onDownload(t.name, t.fileUrl)}>
-                            <Download className="h-4 w-4 mr-2" />
-                            Download
-                          </DownloadButton>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
+                      <div className="flex gap-2">
+                        <DownloadButton onClick={() => onDownload(t.name, t.fileUrl)}>
+                          <Download className="h-4 w-4 mr-2" />
+                          Download
+                        </DownloadButton>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
             </div>
 
             {recent.length > 0 && (
               <>
                 <div className="relative my-8">
                   <Separator />
-                  <span className="absolute left-1/2 -translate-x-1/2 -top-3 bg-background px-3 text-xs font-medium text-muted-foreground">
-                    Recently viewed
-                  </span>
+                  <span className="absolute left-1/2 -translate-x-1/2 -top-3 bg-background px-3 text-xs font-medium text-muted-foreground">Recently viewed</span>
                 </div>
                 <div className="flex flex-wrap gap-2 items-center">
                   {recent.map((name) => (
-                    <button
-                      key={name}
-                      className="text-xs rounded-full px-3 py-1 border bg-background hover:bg-gray-50 transition"
-                      onClick={() => {
-                        const el = Array.from(document.querySelectorAll("h3, h2, .text-lg"))
-                          .find((n) => n.textContent?.trim() === name) as HTMLElement | undefined;
-                        el?.scrollIntoView({ behavior: "smooth", block: "center" });
-                      }}
-                    >
+                    <button key={name} type="button" className="text-xs rounded-full px-3 py-1 border bg-background hover:bg-gray-50 transition" onClick={() => {
+                      const el = Array.from(document.querySelectorAll("h3, h2, .text-lg")).find((n) => n.textContent?.trim() === name) as HTMLElement | undefined;
+                      el?.scrollIntoView({ behavior: "smooth", block: "center" });
+                    }}>
                       {name}
                     </button>
                   ))}
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="ml-2"
-                    onClick={() => {
-                      localStorage.removeItem("recentlyViewedTemplates");
-                      setRecent([]);
-                    }}
-                  >
+                  <Button variant="ghost" size="sm" className="ml-2" onClick={() => { localStorage.removeItem("recentlyViewedTemplates"); setRecent([]); }}>
                     Clear
                   </Button>
                 </div>
@@ -445,17 +403,13 @@ export default function ResumePage() {
         <Card className="mb-12 bg-card hover:bg-card/70 hover:backdrop-blur-sm transition-colors">
           <CardHeader>
             <CardTitle className="text-2xl text-red-600">Common Resume Mistakes to Avoid</CardTitle>
-            <CardDescription>
-              Learn from these frequent errors that can hurt your chances of getting an interview.
-            </CardDescription>
+            <CardDescription>Learn from these frequent errors that can hurt your chances of getting an interview.</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {data.commonMistakes.map((m, i) => (
                 <div key={i} className="flex items-start gap-3 p-4 bg-red-50 rounded-lg">
-                  <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-red-600 text-sm font-bold">✗</span>
-                  </div>
+                  <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center shrink-0 mt-0.5"><span className="text-red-600 text-sm font-bold">✗</span></div>
                   <span className="text-red-800">{m}</span>
                 </div>
               ))}
@@ -470,18 +424,9 @@ export default function ResumePage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {[
-                "Choose and download a template that matches your experience level",
-                "Gather all your information: work history, education, skills, and achievements",
-                "Customize your resume for each job application",
-                "Proofread carefully and ask someone else to review it",
-              ].map((step, i) => (
+              {["Choose and download a template that matches your experience level", "Gather all your information: work history, education, skills, and achievements", "Customize your resume for each job application", "Proofread carefully and ask someone else to review it"].map((step, i) => (
                 <div key={i} className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                    <span className="text-blue-600 font-bold">
-                      {new Intl.NumberFormat("en-US").format(i + 1)}
-                    </span>
-                  </div>
+                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center"><span className="text-blue-600 font-bold">{new Intl.NumberFormat("en-US").format(i + 1)}</span></div>
                   <span>{step}</span>
                 </div>
               ))}
@@ -489,16 +434,10 @@ export default function ResumePage() {
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg" className="flex-1">
-                <Link href="/quiz">
-                  <ArrowRight className="h-5 w-5 mr-2" />
-                  Take Our Career Quiz
-                </Link>
+                <Link href="/quiz"><ArrowRight className="h-5 w-5 mr-2" />Take Our Career Quiz</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="flex-1 bg-transparent">
-                <Link href="/interview">
-                  <FileText className="h-5 w-5 mr-2" />
-                  View Interview Tips
-                </Link>
+                <Link href="/interview"><FileText className="h-5 w-5 mr-2" />View Interview Tips</Link>
               </Button>
             </div>
           </CardContent>

@@ -149,7 +149,7 @@ export default function PrivacyPage() {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Phone className="h-4 w-4 text-green-600" />
-                  <span>+1 (555) 123-4567</span>
+                  <span> +974 (778) 88098</span>
                 </div>
               </div>
             </CardContent>

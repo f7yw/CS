@@ -1,11 +1,20 @@
 "use client"
 
-import { useState } from "react"
-import { HelpCircle, Search, Book, MessageSquare, Mail, Phone, ChevronDown, ChevronRight } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import React, { useState, useEffect, useRef } from "react"
+import { useRouter } from "next/navigation"
+import {
+  HelpCircle,
+  Search,
+  Book,
+  MessageSquare,
+  Mail,
+  Phone,
+  ChevronDown,
+  ChevronRight,
+} from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 
 interface FAQ {
   question: string
@@ -13,10 +22,12 @@ interface FAQ {
   category: string
 }
 
-export default function HelpPage() {
+export default function HelpPage(): JSX.Element {
+  const router = useRouter()
   const [searchTerm, setSearchTerm] = useState("")
   const [openItems, setOpenItems] = useState<string[]>([])
 
+  // === FAQ data ===
   const faqs: FAQ[] = [
     {
       question: "How do I get started with NextStep Navigator?",
@@ -69,7 +80,7 @@ export default function HelpPage() {
   ]
 
   const toggleItem = (question: string) => {
-    setOpenItems((prev) => (prev.includes(question) ? prev.filter((item) => item !== question) : [...prev, question]))
+    setOpenItems((prev) => (prev.includes(question) ? prev.filter((p) => p !== question) : [...prev, question]))
   }
 
   const filteredFAQs = faqs.filter(
@@ -79,15 +90,34 @@ export default function HelpPage() {
       faq.category.toLowerCase().includes(searchTerm.toLowerCase()),
   )
 
-  const categories = [...new Set(faqs.map((faq) => faq.category))]
+  const categories = Array.from(new Set(faqs.map((f) => f.category)))
+
+  // === Button handlers (wired to pages) ===
+  const handleViewGuide = () => router.push("/getting-started") // ensure page exists
+  const handleContactPage = () => router.push("/contact")
+  const handleEmailSupport = () => (window.location.href = "mailto:support@nextstepnavigator.com")
+  const handleLiveChat = () => router.push("/support/chat") // ensure page exists or replace with your chat path
+
+  // helper to set search to category and scroll to results
+  const applyCategoryFilter = (category: string) => {
+    setSearchTerm(category)
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
+  // accessible ref for input (optional)
+  const inputRef = useRef<HTMLInputElement | null>(null)
+  useEffect(() => {
+    // If you want to auto-focus search when arriving with query, do it here
+    // if (router.query?.q) inputRef.current?.focus()
+  }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100">
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted/30">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Help Center</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h1 className="text-4xl font-bold text-foreground mb-4">Help Center</h1>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Find answers to common questions and get the help you need to make the most of NextStep Navigator.
           </p>
         </div>
@@ -95,8 +125,11 @@ export default function HelpPage() {
         {/* Search */}
         <div className="max-w-2xl mx-auto mb-12">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-5 w-5" />
             <Input
+              id="help-search"
+              ref={inputRef as any}
+              aria-label="Search help topics"
               placeholder="Search for help topics..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -105,50 +138,55 @@ export default function HelpPage() {
           </div>
         </div>
 
-        <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Quick Help Cards */}
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Left column: quick cards */}
           <div className="lg:col-span-1 space-y-6">
-            <Card>
+            <Card className="transition-colors hover:border-primary">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Book className="h-5 w-5 text-green-600" />
+                  <Book className="h-5 w-5 text-primary" />
                   <span>Getting Started Guide</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-sm text-muted-foreground mb-4">
                   New to NextStep Navigator? Learn the basics and get up to speed quickly.
                 </p>
-                <Button variant="outline" size="sm" className="w-full bg-transparent">
+                <Button variant="secondary" size="sm" className="w-full" onClick={handleViewGuide}>
                   View Guide
                 </Button>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="transition-colors hover:border-primary">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <MessageSquare className="h-5 w-5 text-green-600" />
+                  <MessageSquare className="h-5 w-5 text-primary" />
                   <span>Contact Support</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center space-x-2 text-sm">
-                  <Mail className="h-4 w-4 text-green-600" />
+                  <Mail className="h-4 w-4 text-primary" />
                   <span>support@nextstepnavigator.com</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm">
-                  <Phone className="h-4 w-4 text-green-600" />
-                  <span>+1 (555) 123-4567</span>
+                  <Phone className="h-4 w-4 text-primary" />
+                  <span> +974 (778) 88098</span>
                 </div>
-                <Button size="sm" className="w-full bg-green-600 hover:bg-green-700">
-                  Contact Us
-                </Button>
+                <div className="flex gap-2">
+                  <Button variant="primary" size="sm" className="flex-1" onClick={handleContactPage}>
+                    Contact Page
+                  </Button>
+                  <Button variant="outline" size="sm" className="flex-1" onClick={handleEmailSupport}>
+                    <Mail className="h-4 w-4 mr-2" />
+                    Email
+                  </Button>
+                </div>
               </CardContent>
             </Card>
 
-            {/* Categories */}
-            <Card>
+            <Card className="transition-colors hover:border-primary">
               <CardHeader>
                 <CardTitle>Browse by Category</CardTitle>
               </CardHeader>
@@ -159,8 +197,8 @@ export default function HelpPage() {
                       key={category}
                       variant="ghost"
                       size="sm"
-                      className="w-full justify-start text-left"
-                      onClick={() => setSearchTerm(category)}
+                      className="w-full justify-start text-left hover:text-primary"
+                      onClick={() => applyCategoryFilter(category)}
                     >
                       {category}
                     </Button>
@@ -170,50 +208,61 @@ export default function HelpPage() {
             </Card>
           </div>
 
-          {/* FAQ Section */}
-          <div className="lg:col-span-2">
-            <Card>
+          {/* Right column: FAQ list */}
+          <div className="lg:col-span-2 space-y-6">
+            <Card className="transition-colors hover:border-primary">
               <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <HelpCircle className="h-6 w-6 text-green-600" />
-                  <span>Frequently Asked Questions</span>
-                </CardTitle>
-                <CardDescription>
-                  {searchTerm
-                    ? `Showing ${filteredFAQs.length} results for "${searchTerm}"`
-                    : `${faqs.length} common questions and answers`}
-                </CardDescription>
+                <div className="flex items-start justify-between w-full">
+                  <div>
+                    <CardTitle className="flex items-center space-x-2">
+                      <HelpCircle className="h-6 w-6 text-primary" />
+                      <span>Frequently Asked Questions</span>
+                    </CardTitle>
+                    <CardDescription>
+                      {searchTerm
+                        ? `Showing ${filteredFAQs.length} results for "${searchTerm}"`
+                        : `${faqs.length} common questions and answers`}
+                    </CardDescription>
+                  </div>
+                </div>
               </CardHeader>
+
               <CardContent>
                 <div className="space-y-4">
-                  {filteredFAQs.map((faq, index) => (
-                    <Collapsible key={index}>
-                      <CollapsibleTrigger
-                        className="flex items-center justify-between w-full p-4 text-left bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors"
-                        onClick={() => toggleItem(faq.question)}
-                      >
-                        <div className="flex-1">
-                          <h3 className="font-medium text-gray-900">{faq.question}</h3>
-                          <p className="text-sm text-green-600 mt-1">{faq.category}</p>
-                        </div>
-                        {openItems.includes(faq.question) ? (
-                          <ChevronDown className="h-5 w-5 text-gray-500" />
-                        ) : (
-                          <ChevronRight className="h-5 w-5 text-gray-500" />
+                  {filteredFAQs.map((faq, idx) => {
+                    const isOpen = openItems.includes(faq.question)
+                    return (
+                      <div key={idx} className="border rounded-lg overflow-hidden">
+                        <button
+                          type="button"
+                          aria-expanded={isOpen}
+                          onClick={() => toggleItem(faq.question)}
+                          className="flex items-center justify-between w-full p-4 text-left bg-muted/10 hover:bg-muted transition-colors"
+                        >
+                          <div className="flex-1">
+                            <h3 className="font-medium text-foreground">{faq.question}</h3>
+                            <p className="text-sm text-primary mt-1">{faq.category}</p>
+                          </div>
+                          <span className="ml-4 flex items-center">
+                            {isOpen ? <ChevronDown className="h-5 w-5 text-muted-foreground" /> : <ChevronRight className="h-5 w-5 text-muted-foreground" />}
+                          </span>
+                        </button>
+
+                        {isOpen && (
+                          <div className="p-4 bg-background/50">
+                            <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
+                          </div>
                         )}
-                      </CollapsibleTrigger>
-                      <CollapsibleContent className="px-4 pb-4">
-                        <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
-                      </CollapsibleContent>
-                    </Collapsible>
-                  ))}
+                      </div>
+                    )
+                  })}
                 </div>
 
                 {filteredFAQs.length === 0 && (
                   <div className="text-center py-8">
-                    <HelpCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">No results found</h3>
-                    <p className="text-gray-500 mb-4">Try adjusting your search terms or browse by category.</p>
+                    <HelpCircle className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                    <h3 className="text-lg font-medium text-foreground mb-2">No results found</h3>
+                    <p className="text-muted-foreground mb-4">Try adjusting your search terms or browse by category.</p>
                     <Button onClick={() => setSearchTerm("")} variant="outline">
                       Clear Search
                     </Button>
@@ -222,22 +271,21 @@ export default function HelpPage() {
               </CardContent>
             </Card>
 
-            {/* Additional Help */}
-            <Card className="mt-6">
+            <Card className="transition-colors hover:border-primary">
               <CardHeader>
                 <CardTitle>Still Need Help?</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 mb-4">
-                  Can't find what you're looking for? Our support team is here to help you succeed in your career
-                  journey.
+                <p className="text-muted-foreground mb-4">
+                  Can't find what you're looking for? Our support team is here to help you succeed in your career journey.
                 </p>
+
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <Button className="bg-green-600 hover:bg-green-700">
+                  <Button variant="primary" onClick={handleEmailSupport}>
                     <Mail className="h-4 w-4 mr-2" />
                     Email Support
                   </Button>
-                  <Button variant="outline">
+                  <Button variant="outline" onClick={handleLiveChat}>
                     <MessageSquare className="h-4 w-4 mr-2" />
                     Live Chat
                   </Button>
