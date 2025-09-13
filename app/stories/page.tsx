@@ -1055,7 +1055,7 @@ function StoryModal({
               {story.audioUrl && (
                 <div className="flex items-center gap-4">
                   <Button variant="ghost" onClick={() => {
-                    setCurrentlyPlaying => setCurrentlyPlaying
+                    // setCurrentlyPlaying handled below
                     // handled in parent; leaving for accessibility
                     if (currentlyPlaying === story.id) setCurrentlyPlaying(null)
                     else setCurrentlyPlaying(story.id)

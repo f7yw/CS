@@ -2,7 +2,7 @@
   {
     "id": "story_001",
     "name": "Sarah Chen",
-    "photo": "/placeholder.svg?height=150&width=150",
+  "photo": "/images/stories/Sarah Chen.jpg",
     "currentRole": "Senior Software Engineer",
     "company": "Google",
     "domain": "Technology",
@@ -29,7 +29,7 @@
   {
     "id": "story_002",
     "name": "Marcus Johnson",
-    "photo": "/placeholder.svg?height=150&width=150",
+  "photo": "/images/stories/Marcus Johnson.jpg",
     "currentRole": "Registered Nurse",
     "company": "Johns Hopkins Hospital",
     "domain": "Healthcare",
@@ -56,7 +56,7 @@
   {
     "id": "story_003",
     "name": "Emily Rodriguez",
-    "photo": "/placeholder.svg?height=150&width=150",
+  "photo": "/images/stories/Emily Rodriguez.jpg",
     "currentRole": "Creative Director",
     "company": "Ogilvy",
     "domain": "Creative Arts",
@@ -83,7 +83,7 @@
   {
     "id": "story_004",
     "name": "David Kim",
-    "photo": "/placeholder.svg?height=150&width=150",
+  "photo": "/images/stories/David Kim.jpg",
     "currentRole": "Investment Analyst",
     "company": "Goldman Sachs",
     "domain": "Finance",
@@ -110,7 +110,7 @@
   {
     "id": "story_005",
     "name": "Dr. Aisha Patel",
-    "photo": "/placeholder.svg?height=150&width=150",
+  "photo": "/images/stories/Aisha Patel.jpg",
     "currentRole": "Clinical Psychologist",
     "company": "Private Practice",
     "domain": "Healthcare",
@@ -137,7 +137,7 @@
   {
     "id": "story_006",
     "name": "James Thompson",
-    "photo": "/placeholder.svg?height=150&width=150",
+  "photo": "/images/stories/James Thompson.jpg",
     "currentRole": "Mechanical Engineer",
     "company": "Tesla",
     "domain": "Engineering",
@@ -159,6 +159,199 @@
     ],
     "inspiration": "Practical experience and continuous learning can open doors to dream companies",
     "tags": ["community-college", "hands-on-learning", "engineering", "career-progression"],
+    "featured": true
+  }
+  ,
+  {
+    "id": "story_007",
+    "name": "Malala Yousafzai",
+  "photo": "/images/stories/malala.jpg",
+    "currentRole": "Education Activist & Nobel Laureate",
+    "company": "Malala Fund",
+    "domain": "Education & Human Rights",
+    "previousBackground": "Student in Pakistan",
+    "storyShort": "Survived an assassination attempt and became a global advocate for girls' education.",
+    "storyFull": "Malala Yousafzai grew up in Pakistan's Swat Valley, where the Taliban often banned girls from attending school. In 2012, Malala was shot by a Taliban gunman for her activism. She survived and continued her fight for education, co-founding the Malala Fund and becoming the youngest Nobel Peace Prize laureate. Malala's courage and advocacy have inspired millions worldwide.",
+    "keyLessons": [
+      "Stand up for what you believe in, even in the face of danger",
+      "Education is a fundamental right",
+      "One voice can change the world"
+    ],
+    "timeline": [
+      { "year": "2012", "event": "Survived assassination attempt" },
+      { "year": "2013", "event": "Co-founded Malala Fund" },
+      { "year": "2014", "event": "Won Nobel Peace Prize" }
+    ],
+    "inspiration": "Courage and education can transform societies.",
+    "tags": ["education", "human-rights", "activism"],
+    "featured": true
+  },
+  {
+    "id": "story_008",
+    "name": "Elon Musk",
+  "photo": "/images/stories/elon.jpg",
+    "currentRole": "CEO & Founder",
+    "company": "SpaceX, Tesla, Neuralink, X",
+    "domain": "Technology & Entrepreneurship",
+    "previousBackground": "Physics & Economics Student",
+    "storyShort": "From South Africa to Silicon Valley, revolutionizing multiple industries.",
+    "storyFull": "Elon Musk immigrated from South Africa to the U.S., co-founded Zip2 and PayPal, then launched SpaceX, Tesla, and other ventures. He overcame repeated failures and skepticism to lead the private space industry and accelerate the adoption of electric vehicles. Musk is known for his ambitious vision and relentless work ethic.",
+    "keyLessons": [
+      "Take risks and embrace failure as a learning tool",
+      "Innovate across industries",
+      "Persistence is key to success"
+    ],
+    "timeline": [
+      { "year": "1999", "event": "Sold Zip2" },
+      { "year": "2002", "event": "Founded SpaceX" },
+      { "year": "2004", "event": "Joined Tesla Motors" }
+    ],
+    "inspiration": "Dream big and work tirelessly to achieve it.",
+    "tags": ["technology", "entrepreneurship", "innovation"],
+    "featured": true
+  },
+  {
+    "id": "story_009",
+    "name": "Oprah Winfrey",
+  "photo": "/images/stories/oprah.jpg",
+    "currentRole": "Media Executive & Philanthropist",
+    "company": "OWN: Oprah Winfrey Network",
+    "domain": "Media & Philanthropy",
+    "previousBackground": "News Anchor",
+    "storyShort": "Rose from poverty and adversity to become a global media icon.",
+    "storyFull": "Oprah Winfrey overcame a difficult childhood marked by poverty and abuse. She began her career as a news anchor and became the host of The Oprah Winfrey Show, which ran for 25 years. Oprah is now a billionaire media executive and philanthropist, known for her generosity and influence.",
+    "keyLessons": [
+      "Your past does not define your future",
+      "Empathy and authenticity build trust",
+      "Giving back multiplies your impact"
+    ],
+    "timeline": [
+      { "year": "1986", "event": "Launched The Oprah Winfrey Show" },
+      { "year": "2011", "event": "Founded OWN Network" },
+      { "year": "2013", "event": "Awarded Presidential Medal of Freedom" }
+    ],
+    "inspiration": "Resilience and kindness can change the world.",
+    "tags": ["media", "philanthropy", "resilience"],
+    "featured": true
+  },
+  {
+    "id": "story_010",
+    "name": "Sundar Pichai",
+  "photo": "/images/stories/sundar.jpg",
+    "currentRole": "CEO",
+    "company": "Google & Alphabet",
+    "domain": "Technology",
+    "previousBackground": "Metallurgical Engineer",
+    "storyShort": "From humble beginnings in India to leading one of the world's largest tech companies.",
+    "storyFull": "Sundar Pichai grew up in Chennai, India, and studied engineering before moving to the U.S. for graduate school. He joined Google in 2004, led the development of Chrome, and rose through the ranks to become CEO of Google and Alphabet. Pichai is admired for his leadership and vision.",
+    "keyLessons": [
+      "Education opens global opportunities",
+      "Lead with humility and empathy",
+      "Innovation drives progress"
+    ],
+    "timeline": [
+      { "year": "2004", "event": "Joined Google" },
+      { "year": "2015", "event": "Became CEO of Google" },
+      { "year": "2019", "event": "Became CEO of Alphabet" }
+    ],
+    "inspiration": "Stay curious and keep learning.",
+    "tags": ["technology", "leadership", "education"],
+    "featured": true
+  },
+  {
+    "id": "story_011",
+    "name": "Cristiano Ronaldo",
+  "photo": "/images/stories/ronaldo.jpg",
+    "currentRole": "Professional Footballer",
+    "company": "Al Nassr FC",
+    "domain": "Sports",
+    "previousBackground": "Youth Academy Player",
+    "storyShort": "From a small island in Portugal to global football superstardom.",
+    "storyFull": "Cristiano Ronaldo grew up in Madeira, Portugal, and joined Sporting CP's youth academy. His talent and work ethic led him to Manchester United, Real Madrid, Juventus, and now Al Nassr. Ronaldo is one of the most decorated footballers in history, known for his discipline and drive.",
+    "keyLessons": [
+      "Hard work beats talent when talent doesn't work hard",
+      "Discipline and routine are essential",
+      "Never stop striving for greatness"
+    ],
+    "timeline": [
+      { "year": "2003", "event": "Signed with Manchester United" },
+      { "year": "2009", "event": "Joined Real Madrid" },
+      { "year": "2023", "event": "Joined Al Nassr FC" }
+    ],
+    "inspiration": "Dedication and belief can take you anywhere.",
+    "tags": ["sports", "discipline", "success"],
+    "featured": true
+  },
+  {
+    "id": "story_012",
+    "name": "Marie Curie",
+  "photo": "/images/stories/curie.jpg",
+    "currentRole": "Physicist & Chemist",
+    "company": "University of Paris",
+    "domain": "Science & Research",
+    "previousBackground": "Teacher in Poland",
+    "storyShort": "First woman to win a Nobel Prize and the only person to win in two sciences.",
+    "storyFull": "Marie Curie was born in Poland and moved to Paris to study science. She discovered polonium and radium, and her pioneering research on radioactivity earned her two Nobel Prizes. Curie broke barriers for women in science and left a lasting legacy in medicine and physics.",
+    "keyLessons": [
+      "Perseverance in the face of adversity",
+      "Pursue knowledge relentlessly",
+      "Break barriers for future generations"
+    ],
+    "timeline": [
+      { "year": "1903", "event": "Won Nobel Prize in Physics" },
+      { "year": "1911", "event": "Won Nobel Prize in Chemistry" },
+      { "year": "1934", "event": "Passed away, leaving a scientific legacy" }
+    ],
+    "inspiration": "Curiosity and determination can change the world.",
+    "tags": ["science", "women-in-stem", "research"],
+    "featured": true
+  },
+  {
+    "id": "story_013",
+    "name": "Steve Jobs",
+  "photo": "/images/stories/jobs.jpg",
+    "currentRole": "Co-founder & Former CEO",
+    "company": "Apple Inc.",
+    "domain": "Technology & Design",
+    "previousBackground": "College Dropout",
+    "storyShort": "Revolutionized technology and design, leaving a lasting impact on the world.",
+    "storyFull": "Steve Jobs co-founded Apple in his parents' garage, was ousted from the company, and later returned to lead Apple to unprecedented success. He was known for his vision, design sense, and ability to inspire teams to create groundbreaking products like the iPhone and MacBook.",
+    "keyLessons": [
+      "Follow your intuition and passion",
+      "Embrace setbacks as opportunities",
+      "Design and user experience matter"
+    ],
+    "timeline": [
+      { "year": "1976", "event": "Co-founded Apple" },
+      { "year": "1985", "event": "Left Apple" },
+      { "year": "1997", "event": "Returned as CEO" }
+    ],
+    "inspiration": "Innovation and creativity can change the world.",
+    "tags": ["technology", "design", "entrepreneurship"],
+    "featured": true
+  },
+  {
+    "id": "story_014",
+    "name": "Huda Kattan",
+  "photo": "/images/stories/huda.jpg",
+    "currentRole": "Founder & CEO",
+    "company": "Huda Beauty",
+    "domain": "Beauty & Entrepreneurship",
+    "previousBackground": "Makeup Artist & Blogger",
+    "storyShort": "Built a global beauty empire from a blog and passion for makeup.",
+    "storyFull": "Huda Kattan started as a makeup artist and beauty blogger in Dubai. She leveraged social media to build a loyal following and launched Huda Beauty with her sisters. The brand quickly became a global sensation, making Huda one of the most influential women in beauty.",
+    "keyLessons": [
+      "Leverage digital platforms to build your brand",
+      "Authenticity resonates with audiences",
+      "Turn passion into a business"
+    ],
+    "timeline": [
+      { "year": "2010", "event": "Started beauty blog" },
+      { "year": "2013", "event": "Launched Huda Beauty" },
+      { "year": "2020", "event": "Named one of the most influential women in beauty" }
+    ],
+    "inspiration": "Passion and authenticity can build global brands.",
+    "tags": ["beauty", "entrepreneurship", "social-media"],
     "featured": true
   }
 ]
