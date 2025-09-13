@@ -22,7 +22,6 @@ import {
   GraduationCap,
 } from "lucide-react";
 
-// -------------------- Career Data --------------------
 const careerData = [
   {
     id: 1,
@@ -106,17 +105,14 @@ const careerData = [
   },
 ];
 
-// -------------------- Filters --------------------
 const industries = ["All", "Technology", "Healthcare", "Finance", "Marketing", "Education", "Engineering"];
 const experienceLevels = ["All", "Entry Level", "Mid Level", "Senior Level"];
 const educationLevels = ["All", "High School", "Associate Degree", "Bachelor's Degree", "Master's Degree", "PhD"];
 
-// -------------------- Component --------------------
 export default function CareerBankPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // -------------------- States --------------------
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedIndustry, setSelectedIndustry] = useState("All");
   const [selectedExperience, setSelectedExperience] = useState("All");
@@ -126,10 +122,8 @@ export default function CareerBankPage() {
   const [favorites, setFavorites] = useState<number[]>([]);
   const [activeTab, setActiveTab] = useState("all");
 
-  // Sorting state for Ascending/Descending
   const [isAscending, setIsAscending] = useState(true);
 
-  // -------------------- Effects --------------------
   useEffect(() => {
     const search = searchParams.get("search");
     const industry = searchParams.get("industry");
@@ -148,7 +142,6 @@ export default function CareerBankPage() {
     }
   }, []);
 
-  // -------------------- Filtered Careers --------------------
   const filteredCareers = useMemo(() => {
     return careerData
       .filter((career) => {
@@ -169,10 +162,8 @@ export default function CareerBankPage() {
       .sort((a, b) => (isAscending ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)));
   }, [searchQuery, selectedIndustry, selectedExperience, selectedEducation, showTrendingOnly, showRemoteOnly, isAscending]);
 
-  // -------------------- Favorite Careers --------------------
   const favoriteCareers = careerData.filter((career) => favorites.includes(career.id));
 
-  // -------------------- Handlers --------------------
   const toggleFavorite = (careerId: number) => {
     const newFavorites = favorites.includes(careerId)
       ? favorites.filter((id) => id !== careerId)
@@ -202,11 +193,10 @@ export default function CareerBankPage() {
     router.push("/career-bank");
   };
 
-  // -------------------- JSX --------------------
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background">
       <div className="container mx-auto px-4 py-8">
-        {/* Page Header */}
+    
         <div className="text-center mb-8">
           <h1 className="font-heading text-4xl font-bold mb-4">Career Bank</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -214,10 +204,9 @@ export default function CareerBankPage() {
           </p>
         </div>
 
-        {/* Filters Card */}
         <Card className="mb-8">
           <CardContent className="p-6 space-y-4">
-            {/* Search Input */}
+          
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
@@ -228,7 +217,7 @@ export default function CareerBankPage() {
               />
             </div>
 
-            {/* Filters */}
+           
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <Select value={selectedIndustry} onValueChange={setSelectedIndustry}>
                 <SelectTrigger>
@@ -275,7 +264,7 @@ export default function CareerBankPage() {
               </Button>
             </div>
 
-            {/* Trending / Remote / Sort */}
+          
             <div className="flex flex-wrap gap-2 items-center">
               <Button
                 variant={showTrendingOnly ? "default" : "outline"}
@@ -297,7 +286,7 @@ export default function CareerBankPage() {
                 Remote Friendly
               </Button>
 
-              {/* Sort Button */}
+             
               <div className="ml-auto">
                 <Button
                   size="sm"
@@ -311,7 +300,7 @@ export default function CareerBankPage() {
           </CardContent>
         </Card>
 
-        {/* Tabs */}
+       
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-8">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="all" className="flex items-center gap-2">
@@ -324,7 +313,7 @@ export default function CareerBankPage() {
             </TabsTrigger>
           </TabsList>
 
-          {/* All Careers Tab */}
+       
           <TabsContent value="all" className="mt-6">
             {filteredCareers.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -421,7 +410,7 @@ export default function CareerBankPage() {
             )}
           </TabsContent>
 
-          {/* Favorites Tab */}
+         
           <TabsContent value="favorites" className="mt-6">
             {favoriteCareers.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
