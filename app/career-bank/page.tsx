@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useMemo } from "react"
-import { useRouter, useSearchParams } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useState, useEffect, useMemo } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import {
   Search,
   Filter,
@@ -20,7 +20,7 @@ import {
   ExternalLink,
   Briefcase,
   GraduationCap,
-} from "lucide-react"
+} from "lucide-react";
 
 const careerData = [
   {
@@ -103,101 +103,100 @@ const careerData = [
     companies: ["Goldman Sachs", "JPMorgan", "Morgan Stanley", "BlackRock"],
     location: "Financial Centers",
   },
-]
+];
 
-const industries = ["All", "Technology", "Healthcare", "Finance", "Marketing", "Education", "Engineering"]
-const experienceLevels = ["All", "Entry Level", "Mid Level", "Senior Level"]
-const educationLevels = ["All", "High School", "Associate Degree", "Bachelor's Degree", "Master's Degree", "PhD"]
+const industries = ["All", "Technology", "Healthcare", "Finance", "Marketing", "Education", "Engineering"];
+const experienceLevels = ["All", "Entry Level", "Mid Level", "Senior Level"];
+const educationLevels = ["All", "High School", "Associate Degree", "Bachelor's Degree", "Master's Degree", "PhD"];
 
 export default function CareerBankPage() {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const [searchQuery, setSearchQuery] = useState("")
-  const [selectedIndustry, setSelectedIndustry] = useState("All")
-  const [selectedExperience, setSelectedExperience] = useState("All")
-  const [selectedEducation, setSelectedEducation] = useState("All")
-  const [showTrendingOnly, setShowTrendingOnly] = useState(false)
-  const [showRemoteOnly, setShowRemoteOnly] = useState(false)
-  const [favorites, setFavorites] = useState<number[]>([])
-  const [activeTab, setActiveTab] = useState("all")
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedIndustry, setSelectedIndustry] = useState("All");
+  const [selectedExperience, setSelectedExperience] = useState("All");
+  const [selectedEducation, setSelectedEducation] = useState("All");
+  const [showTrendingOnly, setShowTrendingOnly] = useState(false);
+  const [showRemoteOnly, setShowRemoteOnly] = useState(false);
+  const [favorites, setFavorites] = useState<number[]>([]);
+  const [activeTab, setActiveTab] = useState("all");
+
+  const [isAscending, setIsAscending] = useState(true);
 
   useEffect(() => {
-    const search = searchParams.get("search")
-    const industry = searchParams.get("industry")
-    const trending = searchParams.get("trending")
-
-    if (search) setSearchQuery(search)
-    if (industry) setSelectedIndustry(industry)
-    if (trending) setShowTrendingOnly(true)
-  }, [searchParams])
+    const search = searchParams.get("search");
+    const industry = searchParams.get("industry");
+    const trending = searchParams.get("trending");
+    if (search) setSearchQuery(search);
+    if (industry) setSelectedIndustry(industry);
+    if (trending) setShowTrendingOnly(true);
+  }, [searchParams]);
 
   useEffect(() => {
     try {
-      const savedFavorites = localStorage.getItem("ns_career_favorites")
-      if (savedFavorites) {
-        setFavorites(JSON.parse(savedFavorites))
-      }
+      const savedFavorites = localStorage.getItem("ns_career_favorites");
+      if (savedFavorites) setFavorites(JSON.parse(savedFavorites));
     } catch (error) {
-      console.log(" !  Failed to load favorites:", error)
+      console.log("Failed to load favorites:", error);
     }
-  }, [])
+  }, []);
 
   const filteredCareers = useMemo(() => {
-    return careerData.filter((career) => {
-      const matchesSearch =
-        !searchQuery ||
-        career.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        career.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        career.skills.some((skill) => skill.toLowerCase().includes(searchQuery.toLowerCase()))
+    return careerData
+      .filter((career) => {
+        const matchesSearch =
+          !searchQuery ||
+          career.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          career.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          career.skills.some((skill) => skill.toLowerCase().includes(searchQuery.toLowerCase()));
 
-      const matchesIndustry = selectedIndustry === "All" || career.industry === selectedIndustry
-      const matchesExperience = selectedExperience === "All" || career.experience.includes(selectedExperience)
-      const matchesEducation = selectedEducation === "All" || career.education.includes(selectedEducation)
-      const matchesTrending = !showTrendingOnly || career.trending
-      const matchesRemote = !showRemoteOnly || career.remote
+        const matchesIndustry = selectedIndustry === "All" || career.industry === selectedIndustry;
+        const matchesExperience = selectedExperience === "All" || career.experience.includes(selectedExperience);
+        const matchesEducation = selectedEducation === "All" || career.education.includes(selectedEducation);
+        const matchesTrending = !showTrendingOnly || career.trending;
+        const matchesRemote = !showRemoteOnly || career.remote;
 
-      return (
-        matchesSearch && matchesIndustry && matchesExperience && matchesEducation && matchesTrending && matchesRemote
-      )
-    })
-  }, [searchQuery, selectedIndustry, selectedExperience, selectedEducation, showTrendingOnly, showRemoteOnly])
+        return matchesSearch && matchesIndustry && matchesExperience && matchesEducation && matchesTrending && matchesRemote;
+      })
+      .sort((a, b) => (isAscending ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)));
+  }, [searchQuery, selectedIndustry, selectedExperience, selectedEducation, showTrendingOnly, showRemoteOnly, isAscending]);
+
+  const favoriteCareers = careerData.filter((career) => favorites.includes(career.id));
 
   const toggleFavorite = (careerId: number) => {
     const newFavorites = favorites.includes(careerId)
       ? favorites.filter((id) => id !== careerId)
-      : [...favorites, careerId]
+      : [...favorites, careerId];
 
-    setFavorites(newFavorites)
-
+    setFavorites(newFavorites);
     try {
-      localStorage.setItem("ns_career_favorites", JSON.stringify(newFavorites))
+      localStorage.setItem("ns_career_favorites", JSON.stringify(newFavorites));
     } catch (error) {
-      console.log(" !  Failed to save favorites:", error)
+      console.log("Failed to save favorites:", error);
     }
-  }
+  };
 
   const handleSearch = (query: string) => {
-    setSearchQuery(query)
-    if (query.trim()) {
-      router.push(`/career-bank?search=${encodeURIComponent(query.trim())}`)
-    }
-  }
+    setSearchQuery(query);
+    if (query.trim()) router.push(`/career-bank?search=${encodeURIComponent(query.trim())}`);
+    else router.push("/career-bank");
+  };
 
   const clearFilters = () => {
-    setSearchQuery("")
-    setSelectedIndustry("All")
-    setSelectedExperience("All")
-    setSelectedEducation("All")
-    setShowTrendingOnly(false)
-    setShowRemoteOnly(false)
-    router.push("/career-bank")
-  }
-
-  const favoriteCareers = careerData.filter((career) => favorites.includes(career.id))
+    setSearchQuery("");
+    setSelectedIndustry("All");
+    setSelectedExperience("All");
+    setSelectedEducation("All");
+    setShowTrendingOnly(false);
+    setShowRemoteOnly(false);
+    router.push("/career-bank");
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background">
       <div className="container mx-auto px-4 py-8">
+    
         <div className="text-center mb-8">
           <h1 className="font-heading text-4xl font-bold mb-4">Career Bank</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -206,88 +205,102 @@ export default function CareerBankPage() {
         </div>
 
         <Card className="mb-8">
-          <CardContent className="p-6">
-            <div className="space-y-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  placeholder="Search careers, skills, or companies..."
-                  value={searchQuery}
-                  onChange={(e) => handleSearch(e.target.value)}
-                  className="pl-10 h-12"
-                />
-              </div>
+          <CardContent className="p-6 space-y-4">
+          
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Search careers, skills, or companies..."
+                value={searchQuery}
+                onChange={(e) => handleSearch(e.target.value)}
+                className="pl-10 h-12"
+              />
+            </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <Select value={selectedIndustry} onValueChange={setSelectedIndustry}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Industry" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {industries.map((industry) => (
-                      <SelectItem key={industry} value={industry}>
-                        {industry}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+           
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <Select value={selectedIndustry} onValueChange={setSelectedIndustry}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Industry" />
+                </SelectTrigger>
+                <SelectContent>
+                  {industries.map((industry) => (
+                    <SelectItem key={industry} value={industry}>
+                      {industry}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
 
-                <Select value={selectedExperience} onValueChange={setSelectedExperience}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Experience Level" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {experienceLevels.map((level) => (
-                      <SelectItem key={level} value={level}>
-                        {level}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+              <Select value={selectedExperience} onValueChange={setSelectedExperience}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Experience Level" />
+                </SelectTrigger>
+                <SelectContent>
+                  {experienceLevels.map((level) => (
+                    <SelectItem key={level} value={level}>
+                      {level}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
 
-                <Select value={selectedEducation} onValueChange={setSelectedEducation}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Education" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {educationLevels.map((level) => (
-                      <SelectItem key={level} value={level}>
-                        {level}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+              <Select value={selectedEducation} onValueChange={setSelectedEducation}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Education" />
+                </SelectTrigger>
+                <SelectContent>
+                  {educationLevels.map((level) => (
+                    <SelectItem key={level} value={level}>
+                      {level}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
 
-                <Button variant="outline" onClick={clearFilters} className="flex items-center gap-2 bg-transparent">
-                  <Filter className="h-4 w-4" />
-                  Clear Filters
-                </Button>
-              </div>
+              <Button variant="outline" onClick={clearFilters} className="flex items-center gap-2 bg-transparent">
+                <Filter className="h-4 w-4" />
+                Clear Filters
+              </Button>
+            </div>
 
-              <div className="flex flex-wrap gap-2">
+          
+            <div className="flex flex-wrap gap-2 items-center">
+              <Button
+                variant={showTrendingOnly ? "default" : "outline"}
+                size="sm"
+                onClick={() => setShowTrendingOnly(!showTrendingOnly)}
+                className="flex items-center gap-2"
+              >
+                <TrendingUp className="h-4 w-4" />
+                Trending Only
+              </Button>
+
+              <Button
+                variant={showRemoteOnly ? "default" : "outline"}
+                size="sm"
+                onClick={() => setShowRemoteOnly(!showRemoteOnly)}
+                className="flex items-center gap-2"
+              >
+                <MapPin className="h-4 w-4" />
+                Remote Friendly
+              </Button>
+
+             
+              <div className="ml-auto">
                 <Button
-                  variant={showTrendingOnly ? "default" : "outline"}
                   size="sm"
-                  onClick={() => setShowTrendingOnly(!showTrendingOnly)}
+                  onClick={() => setIsAscending(!isAscending)}
                   className="flex items-center gap-2"
                 >
-                  <TrendingUp className="h-4 w-4" />
-                  Trending Only
-                </Button>
-                <Button
-                  variant={showRemoteOnly ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setShowRemoteOnly(!showRemoteOnly)}
-                  className="flex items-center gap-2"
-                >
-                  <MapPin className="h-4 w-4" />
-                  Remote Friendly
+                  {isAscending ? "Sort: Ascending" : "Sort: Descending"}
                 </Button>
               </div>
             </div>
           </CardContent>
         </Card>
 
+       
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-8">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="all" className="flex items-center gap-2">
@@ -300,6 +313,7 @@ export default function CareerBankPage() {
             </TabsTrigger>
           </TabsList>
 
+       
           <TabsContent value="all" className="mt-6">
             {filteredCareers.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -396,6 +410,7 @@ export default function CareerBankPage() {
             )}
           </TabsContent>
 
+         
           <TabsContent value="favorites" className="mt-6">
             {favoriteCareers.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -440,5 +455,5 @@ export default function CareerBankPage() {
         </Tabs>
       </div>
     </div>
-  )
+  );
 }
