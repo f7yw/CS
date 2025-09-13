@@ -80,7 +80,7 @@ export function Footer() {
       // Reset to idle after confirmation
       setTimeout(() => setStatus("idle"), 4000)
     } catch (error) {
-      console.error(" !  Newsletter subscription error:", error)
+      console.error("[v0] Newsletter subscription error:", error)
       setErrorMessage("Subscription failed. Please try again.")
       setStatus("error")
     }
@@ -109,6 +109,7 @@ export function Footer() {
   ]
 
   const quickLinks = [
+    { href: "/admission", label: "Admission" },
     { href: "/career-bank", label: "Career Bank" },
     { href: "/quiz", label: "Interest Quiz" },
     { href: "/multimedia", label: "Multimedia Guidance" },

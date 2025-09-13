@@ -1,0 +1,278 @@
+{
+  "ui": {
+    "pageTitle": "Interview Preparation Guide",
+    "pageDescription": "A structured resource to help you prepare for professional interviews with real-world questions, frameworks, and self-assessment tools.",
+    "recentlyViewedTitle": "Recently Viewed",
+    "recentlyViewedDesc": "Quick access to your latest pages",
+    "phasesTitle": "Interview Preparation Phases",
+    "phasesDescription": "A practical framework for preparing, performing, and following up on interviews.",
+    "questionsTitle": "Common Interview Questions",
+    "questionsDescription": "Review, practice, and save your responses to common interview questions.",
+    "searchPlaceholder": "Search questions...",
+    "clearLabel": "Clear",
+    "questionsWord": "questions",
+    "copyLabel": "Copy questions",
+    "copyWithAnswersLabel": "Copy with answers",
+    "savedBadge": "Saved",
+    "answerButtonShow": "Answer",
+    "answerButtonHide": "Hide answer",
+    "answerPlaceholder": "Write your answer here...",
+    "copiedQuestions": "Questions copied to clipboard",
+    "copiedQuestionsAnswers": "Questions and answers copied to clipboard",
+    "copyTemplate": "Copy template",
+    "videosTitle": "Video Interview Masterclass",
+    "videosDescription": "Short, focused lessons to improve your interview performance.",
+    "resourcesTitle": "Downloadable Resources",
+    "resourcesDescription": "Templates and checklists to streamline your preparation.",
+    "quizTitle": "Career Fit Mini-Quiz",
+    "quizDesc": "Select one response per question. Results will show your natural inclinations.",
+    "computeQuiz": "Compute Result",
+    "resetQuiz": "Reset Quiz",
+    "quizTop": "Top Trait",
+    "quizNext": "Next Trait",
+    "noMatches": "No questions match your search in this tab."
+  },
+
+  "stats": [
+    { "label": "Interview Tips", "value": 87, "accent": "purple", "suffix": "+" },
+    { "label": "Saved Responses", "value": 23, "accent": "green", "suffix": "" },
+    { "label": "Users Trained", "value": 12400, "accent": "blue", "suffix": "+" },
+    { "label": "Avg. Prep Time", "value": 18, "accent": "orange", "suffix": "h" }
+  ],
+
+  "interviewPhases": [
+    {
+      "phase": "Research & Planning",
+      "icon": "/icon/interview/research-1.svg",
+      "tips": [
+        "Understand the company’s mission, values, and recent news.",
+        "Review the job description and map your experience to required skills.",
+        "Prepare 3–5 thoughtful questions for the interviewer."
+      ]
+    },
+
+    {
+      "phase": "Practice & Simulation",
+      "icon": "/icon/interview/research-2.svg",
+      "tips": [
+        "Rehearse answers using the STAR method for behavioral questions.",
+        "Record yourself answering aloud to refine delivery.",
+        "Do mock interviews with peers or mentors."
+      ]
+    },
+
+    {
+      "phase": "Execution",
+      "icon": "/icon/interview/research-3.svg",
+      "tips": [
+        "Dress professionally and arrive early (or log in 5 minutes before virtual interviews).",
+        "Maintain eye contact and speak clearly.",
+        "Stay calm—even if you’re unsure, think aloud to demonstrate problem-solving."
+      ]
+    },
+
+    {
+      "phase": "Follow-Up",
+      "icon": "/icon/interview/research-4.svg",
+      "tips": [
+        "Send a thank-you email within 24 hours.",
+        "Reiterate your interest and mention one specific point from the conversation.",
+        "Avoid asking about salary unless they bring it up."
+      ]
+    }
+  ],
+
+
+  "starMethod": {
+    "title": "STAR Method Framework",
+    "description": "Structure your behavioral responses using Situation, Task, Action, Result.",
+    "steps": [
+      {
+        "word": "Situation",
+        "letter": "S",
+        "description": "Describe the context or challenge you faced.",
+        "example": "While working at XYZ Corp, our team missed a critical product launch deadline due to misaligned priorities."
+      },
+
+      {
+        "word": "Task",
+        "letter": "T",
+        "description": "Explain your specific responsibility in that situation.",
+        "example": "I was tasked with coordinating between engineering and marketing to realign timelines without compromising quality."
+      },
+
+      {
+        "word": "Action",
+        "letter": "A",
+        "description": "Detail the steps you took to address the issue.",
+        "example": "I organized daily stand-ups, created a shared tracker, and negotiated scope reductions with stakeholders."
+      },
+
+      {
+        "word": "Result",
+        "letter": "R",
+        "description": "Share the outcome and quantify impact where possible.",
+        "example": "We launched two weeks late but received 92% positive customer feedback, leading to a 30% increase in Q3 revenue."
+      }
+    ]
+  },
+
+
+  "commonQuestions": [
+    {
+      "category": "General",
+      "questions": [
+        "Tell me about yourself.",
+        "Why are you interested in this role?",
+        "What are your strengths and weaknesses?",
+        "Where do you see yourself in five years?"
+      ]
+    },
+
+    {
+      "category": "Behavioral",
+      "questions": [
+        "Describe a time you handled conflict with a colleague.",
+        "Tell me about a project that failed and what you learned.",
+        "Give an example of when you went above and beyond.",
+        "How do you prioritize tasks when everything seems urgent?"
+      ]
+    },
+
+    {
+      "category": "Technical",
+      "questions": [
+        "How do you approach debugging a complex system?",
+        "Explain a technical concept you’ve taught someone else.",
+        "What’s your process for writing testable code?",
+        "How would you design a scalable system to handle high traffic?"
+      ]
+    }
+  ],
+
+ 
+  "videos": [
+  {
+    "title": "STAR Interview Method Explained",
+    "desc": "Learn how to use the STAR technique in behavioral interviews.",
+    "badge": "Foundational",
+    "href": "https://www.youtube.com/watch?v=dWK26jZgsM8",
+    "thumbnail": "https://img.youtube.com/vi/dWK26jZgsM8/hqdefault.jpg"
+  },
+
+  {
+    "title": "10 Tips for Virtual Job Interviews",
+    "desc": "Optimize your setup and communication for remote interviewing.",
+    "badge": "Essential",
+    "href": "https://www.youtube.com/watch?v=C-raveR-ZJ0",
+    "thumbnail": "https://img.youtube.com/vi/C-raveR-ZJ0/hqdefault.jpg"
+  },
+
+  {
+    "title": "STAR Interview Questions & Answers!",
+    "desc": "Real examples using STAR for common behavioral questions.",
+    "badge": "Practice",
+    "href": "https://www.youtube.com/watch?v=uQEuo7woEEk",
+    "thumbnail": "https://img.youtube.com/vi/uQEuo7woEEk/hqdefault.jpg"
+  },
+
+  {
+    "title": "Stand Out in a Job Interview | HBR",
+    "desc": "Strategic tips from Harvard Business Review for impressing interviewers.",
+    "badge": "Pro",
+    "href": "https://www.youtube.com/watch?v=ZU9x1vFx5lI",
+    "thumbnail": "https://img.youtube.com/vi/ZU9x1vFx5lI/hqdefault.jpg"
+  }
+],
+
+
+  "resources": [
+    {
+      "title": "Interview Checklist",
+      "desc": "Printable checklist covering research, prep, and follow-up.",
+      "href": "/interview/interview-checklist.pdf",
+      "accent": "purple"
+    },
+
+    {
+      "title": "STAR Template",
+      "desc": "Fill-in-the-blank worksheet to practice your stories.",
+      "href": "/resources/star-template.docx",
+      "accent": "green"
+    },
+
+    {
+      "title": "Company Research Guide",
+      "desc": "How to dig into earnings calls, Glassdoor reviews, and LinkedIn.",
+      "type": "Guide",
+     "href": "https://www.siena.edu/files/resources/2024-25-career-guide.pdf",
+      "size": "1.2 MB"
+    }
+  ],
+
+
+  "quiz": {
+  "dimensions": ["Analytical", "Creative", "Practical", "Leadership"],
+  "questions": [
+    {
+      "q": "When faced with a new problem at work, what is your first instinct?",
+      "options": [
+        { "label": "Break it into smaller logical parts", "weight": "Analytical" },
+        { "label": "Brainstorm fresh, innovative ideas", "weight": "Creative" },
+        { "label": "Look for quick, hands-on solutions", "weight": "Practical" },
+        { "label": "Guide the team and assign roles", "weight": "Leadership" }
+      ]
+    },
+
+    {
+      "q": "Which activity excites you more?",
+      "options": [
+        { "label": "Analyzing data and patterns", "weight": "Analytical" },
+        { "label": "Designing visuals or content", "weight": "Creative" },
+        { "label": "Building or fixing something tangible", "weight": "Practical" },
+        { "label": "Motivating and coaching others", "weight": "Leadership" }
+      ]
+    },
+
+    {
+      "q": "In a group project, you usually…",
+      "options": [
+        { "label": "Organize research and details", "weight": "Analytical" },
+        { "label": "Suggest out-of-the-box approaches", "weight": "Creative" },
+        { "label": "Handle execution and logistics", "weight": "Practical" },
+        { "label": "Coordinate and take responsibility", "weight": "Leadership" }
+      ]
+    },
+
+    {
+      "q": "What type of tasks give you the most satisfaction?",
+      "options": [
+        { "label": "Solving puzzles or problems", "weight": "Analytical" },
+        { "label": "Creating art, stories, or designs", "weight": "Creative" },
+        { "label": "Practical hands-on tasks", "weight": "Practical" },
+        { "label": "Leading discussions or teams", "weight": "Leadership" }
+      ]
+    },
+
+    {
+      "q": "When deadlines are tight, you tend to…",
+      "options": [
+        { "label": "Plan carefully and track details", "weight": "Analytical" },
+        { "label": "Find new shortcuts or ideas", "weight": "Creative" },
+        { "label": "Focus on doing what works fast", "weight": "Practical" },
+        { "label": "Motivate the group and keep morale up", "weight": "Leadership" }
+      ]
+    },
+    
+    {
+      "q": "Colleagues often describe you as…",
+      "options": [
+        { "label": "Logical and detail-oriented", "weight": "Analytical" },
+        { "label": "Imaginative and original", "weight": "Creative" },
+        { "label": "Efficient and reliable", "weight": "Practical" },
+        { "label": "Confident and inspiring", "weight": "Leadership" }
+      ]
+    }
+  ]
+}  
+}
