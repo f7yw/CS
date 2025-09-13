@@ -23,9 +23,9 @@ export default function RegisterPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: API signup logic
     console.log("Register data:", form)
-    router.push("/dashboard") // بعد التسجيل يحوله للداشبورد (غيره إذا حاب)
+    // مؤقت: بعد التسجيل رجعه لصفحة تسجيل الدخول داخل مسار auth
+    router.push("/auth/login")
   }
 
   return (
@@ -103,7 +103,7 @@ export default function RegisterPage() {
             Already have an account?{" "}
             <button
               type="button"
-              onClick={() => router.push("/login")}
+              onClick={() => router.push("/auth/login")}
               className="text-[var(--primary)] hover:underline"
             >
               Sign In

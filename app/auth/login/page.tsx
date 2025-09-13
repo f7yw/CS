@@ -1,22 +1,38 @@
+// app/auth/login/page.tsx
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
-import { Eye, EyeOff, Mail, Lock, ArrowLeft, LogIn } from "lucide-react"
+import { Eye, EyeOff, Mail, Lock, ArrowLeft, LogIn, CheckCircle } from "lucide-react"
 import Link from "next/link"
 import { useToast } from "@/hooks/use-toast"
 import { validateEmail, sanitizeInput } from "@/lib/validation"
 
 export default function LoginPage() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
   const [formData, setFormData] = useState({ email: "", password: "" })
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const { toast } = useToast()
+
+  const [showRegisteredBanner, setShowRegisteredBanner] = useState<boolean>(false)
+
+  useEffect(() => {
+    const reg = searchParams.get("registered")
+    const success = searchParams.get("success")
+    if (reg === "1" || reg === "true" || success === "1" || success === "true") {
+      setShowRegisteredBanner(true)
+      // Remove banner after some seconds if you want auto-dismiss
+      // setTimeout(() => setShowRegisteredBanner(false), 6000)
+    }
+  }, [searchParams])
 
   const handleInputChange = (field: string, value: string) => {
     const sanitizedValue = sanitizeInput(value)
@@ -92,7 +108,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md space-y-8">
+      <div className="w-full max-w-md space-y-6">
         <Link
           href="/"
           className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -100,6 +116,25 @@ export default function LoginPage() {
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back to Home
         </Link>
+
+        {showRegisteredBanner && (
+          <div className="mb-4 p-3 rounded-md bg-green-50 border border-green-200 text-green-800 flex items-start gap-3">
+            <div className="flex items-center gap-3">
+              <CheckCircle className="h-5 w-5" />
+              <div>
+                <div className="font-medium">Account created successfully</div>
+                <div className="text-sm">Please sign in with your new account.</div>
+              </div>
+            </div>
+            <button
+              onClick={() => setShowRegisteredBanner(false)}
+              aria-label="Dismiss"
+              className="ml-auto text-sm underline"
+            >
+              Dismiss
+            </button>
+          </div>
+        )}
 
         <Card className="border-border bg-card/50 backdrop-blur-sm shadow-xl">
           <CardHeader className="text-center space-y-2">
@@ -175,8 +210,8 @@ export default function LoginPage() {
                     Signing in...
                   </>
                 ) : (
-                  <div className="inline-flex items-center dark:text-black">
-                    <LogIn className="dark:text-black -white h-4 w-4 mr-2" />
+                  <div className="inline-flex items-center">
+                    <LogIn className="h-4 w-4 mr-2" />
                     Sign In
                   </div>
                 )}
