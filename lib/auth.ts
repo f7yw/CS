@@ -44,7 +44,7 @@ export class AuthService {
 
       return data
     } catch (error) {
-      console.error("[v0] Login error:", error)
+      console.error(" !  Login error:", error)
       return {
         success: false,
         message: "Network error. Please try again.",
@@ -72,7 +72,7 @@ export class AuthService {
 
       return await response.json()
     } catch (error) {
-      console.error("[v0] Registration error:", error)
+      console.error(" !  Registration error:", error)
       return {
         success: false,
         message: "Network error. Please try again.",
@@ -94,7 +94,7 @@ export class AuthService {
 
       return await response.json()
     } catch (error) {
-      console.error("[v0] Password reset error:", error)
+      console.error(" !  Password reset error:", error)
       return {
         success: false,
         message: "Network error. Please try again.",

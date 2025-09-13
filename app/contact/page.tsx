@@ -89,7 +89,7 @@ export default function ContactPage() {
 
       setFormData({ name: "", email: "", subject: "", message: "", category: "general" })
     } catch (error) {
-      console.error("[v0] Contact form submission error:", error)
+      console.error(" !  Contact form submission error:", error)
       toast({
         title: "Submission failed",
         description: "There was an error sending your message. Please try again.",
@@ -160,7 +160,7 @@ export default function ContactPage() {
                   <Phone className="h-5 w-5 text-primary dark:text-primary-dark mt-1" />
                   <div>
                     <h3 className="font-medium text-foreground dark:text-foreground-dark">Phone</h3>
-                    <p className="text-muted-foreground dark:text-muted-foreground-dark">+1 (555) 123-4567</p>
+                    <p className="text-muted-foreground dark:text-muted-foreground-dark">+967 (778) 088098 </p>
                     <p className="text-sm text-muted-foreground-dark">Monday - Friday, 9:00 AM - 6:00 PM EST</p>
                   </div>
                 </div>
@@ -174,7 +174,7 @@ export default function ContactPage() {
                       <br />
                       Suite 456
                       <br />
-                      New York, NY 10001
+                      SANAA, 60 STREET
                     </p>
                   </div>
                 </div>
@@ -206,7 +206,7 @@ export default function ContactPage() {
               <CardContent>
                 <div className="aspect-video rounded-lg overflow-hidden shadow-md">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343008!2d-74.00425878459418!3d40.74844097932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259bf5c1654f3%3A0xc80f9cfce5383d5d!2sNew%20York%2C%20NY%2010001%2C%20USA!5e0!3m2!1sen!2s!4v1635959542742!5m2!1sen!2s"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3053.622443336044!2d44.17245826512959!3d15.358975967716066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1603ddd3aa42ec8f%3A0x945d25ab2494c6d!2z2KzYp9mF2LnYqSDYp9mE2YbYp9i12LEg2KfZhNin2K_Yp9ix2Kkg2KfZhNi52KfZhdip!5e0!3m2!1sar!2s!4v1757728028223!5m2!1sar!2s"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}

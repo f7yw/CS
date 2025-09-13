@@ -56,14 +56,14 @@ export async function POST(request: NextRequest) {
       `,
     }
 
-    console.log("[v0] Password reset confirmation email:", emailData)
+    console.log("[!] Password reset confirmation email:", emailData)
 
     return NextResponse.json({
       success: true,
       message: "Password reset successfully. You can now log in with your new password.",
     })
   } catch (error) {
-    console.error("[v0] Password reset error:", error)
+    console.error("[!] Password reset error:", error)
     return NextResponse.json({ error: "Failed to reset password. Please try again." }, { status: 500 })
   }
 }

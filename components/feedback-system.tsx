@@ -150,7 +150,7 @@ export default function FeedbackSystem({ className }: FeedbackSystemProps) {
         message: "",
       })
     } catch (error) {
-      console.error("[v0] Feedback submission error:", error)
+      console.error(" !  Feedback submission error:", error)
       toast({
         title: "Submission failed",
         description: "There was an error submitting your feedback. Please try again.",

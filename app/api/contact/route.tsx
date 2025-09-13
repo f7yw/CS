@@ -107,7 +107,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Log the email data (in production, this would be sent via email service)
-    console.log("[v0] Contact form email data:", emailData)
+    console.log("[!] Contact form email data:", emailData)
 
     // Simulate email sending delay
     await new Promise((resolve) => setTimeout(resolve, 1000))
@@ -117,7 +117,7 @@ export async function POST(request: NextRequest) {
       message: "Your message has been sent successfully. We'll get back to you soon!",
     })
   } catch (error) {
-    console.error("[v0] Contact form error:", error)
+    console.error("[!] Contact form error:", error)
     return NextResponse.json({ error: "Failed to send message. Please try again." }, { status: 500 })
   }
 }

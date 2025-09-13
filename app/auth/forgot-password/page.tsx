@@ -98,7 +98,7 @@ export default function ForgotPasswordPage() {
 
       setStep("code")
     } catch (error) {
-      console.error("[v0] Password reset error:", error)
+      console.error(" !  Password reset error:", error)
       toast({
         title: "Error sending code",
         description: "Something went wrong. Please try again.",
@@ -146,7 +146,7 @@ export default function ForgotPasswordPage() {
 
       setStep("reset")
     } catch (error) {
-      console.error("[v0] Code verification error:", error)
+      console.error(" !  Code verification error:", error)
       toast({
         title: "Verification error",
         description: "Something went wrong. Please try again.",
@@ -220,7 +220,7 @@ export default function ForgotPasswordPage() {
         }, 2000)
       }
     } catch (error) {
-      console.error("[v0] Password reset error:", error)
+      console.error(" !  Password reset error:", error)
       toast({
         title: "Reset error",
         description: "Something went wrong. Please try again.",

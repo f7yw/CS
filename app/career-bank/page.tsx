@@ -138,7 +138,7 @@ export default function CareerBankPage() {
         setFavorites(JSON.parse(savedFavorites))
       }
     } catch (error) {
-      console.log("[v0] Failed to load favorites:", error)
+      console.log(" !  Failed to load favorites:", error)
     }
   }, [])
 
@@ -172,7 +172,7 @@ export default function CareerBankPage() {
     try {
       localStorage.setItem("ns_career_favorites", JSON.stringify(newFavorites))
     } catch (error) {
-      console.log("[v0] Failed to save favorites:", error)
+      console.log(" !  Failed to save favorites:", error)
     }
   }
 

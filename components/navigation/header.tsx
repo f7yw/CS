@@ -154,7 +154,7 @@ export function Header() {
           setUserType(storedUserType)
         }
       } catch (error) {
-        console.log("[v0] Auth check failed:", error)
+        console.log(" !  Auth check failed:", error)
         setIsAuthenticated(false)
       }
     }
@@ -228,7 +228,7 @@ export function Header() {
       const updatedSearches = [searchQuery, ...searches.filter((s: string) => s !== searchQuery)].slice(0, 10)
       localStorage.setItem("ns_search_history", JSON.stringify(updatedSearches))
     } catch (error) {
-      console.log("[v0] Search history save failed:", error)
+      console.log(" !  Search history save failed:", error)
     }
 
     router.push(`/career-bank?search=${encodeURIComponent(searchQuery)}`)
@@ -249,7 +249,7 @@ export function Header() {
       setNotifications(0)
       router.push("/")
     } catch (error) {
-      console.log("[v0] Logout cleanup failed:", error)
+      console.log(" !  Logout cleanup failed:", error)
     }
   }
 

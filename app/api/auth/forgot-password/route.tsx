@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Log the email data (in production, this would be sent via email service)
-    console.log("[v0] Password reset email data:", emailData)
+    console.log("[!] Password reset email data:", emailData)
 
     // Simulate email sending delay
     await new Promise((resolve) => setTimeout(resolve, 1500))
@@ -71,7 +71,7 @@ export async function POST(request: NextRequest) {
       message: "Password reset code sent successfully",
     })
   } catch (error) {
-    console.error("[v0] Forgot password error:", error)
+    console.error("[!] Forgot password error:", error)
     return NextResponse.json({ error: "Failed to send password reset code. Please try again." }, { status: 500 })
   }
 }

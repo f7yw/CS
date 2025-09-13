@@ -46,14 +46,14 @@ export async function POST(request: NextRequest) {
       message: "Registration successful. Please check your email for verification.",
     })
   } catch (error) {
-    console.error("[v0] Registration API error:", error)
+    console.error("[!] Registration API error:", error)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
 
 async function sendWelcomeEmail(email: string, name: string) {
   // In production, integrate with Resend, SendGrid, or Nodemailer
-  console.log(`[v0] Sending welcome email to ${email} for ${name}`)
+  console.log(`[!] Sending welcome email to ${email} for ${name}`)
 
   // Simulate email sending to admin
   const emailData = {

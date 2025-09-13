@@ -68,7 +68,7 @@ export default function CommentsSystem({ pageId, className }: CommentsSystemProp
       const pageComments = allComments[pageId] || []
       setComments(pageComments)
     } catch (error) {
-      console.error("[v0] Error loading comments:", error)
+      console.error(" !  Error loading comments:", error)
       setComments([])
     }
   }
@@ -81,7 +81,7 @@ export default function CommentsSystem({ pageId, className }: CommentsSystemProp
       localStorage.setItem("page_comments", JSON.stringify(allComments))
       setComments(updatedComments)
     } catch (error) {
-      console.error("[v0] Error saving comments:", error)
+      console.error(" !  Error saving comments:", error)
     }
   }
 
@@ -138,7 +138,7 @@ export default function CommentsSystem({ pageId, className }: CommentsSystemProp
         description: "Your comment has been added successfully.",
       })
     } catch (error) {
-      console.error("[v0] Error posting comment:", error)
+      console.error(" !  Error posting comment:", error)
       toast({
         title: "Error posting comment",
         description: "Something went wrong. Please try again.",
@@ -191,7 +191,7 @@ export default function CommentsSystem({ pageId, className }: CommentsSystemProp
         description: "Your reply has been added successfully.",
       })
     } catch (error) {
-      console.error("[v0] Error posting reply:", error)
+      console.error(" !  Error posting reply:", error)
       toast({
         title: "Error posting reply",
         description: "Something went wrong. Please try again.",

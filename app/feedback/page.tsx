@@ -103,7 +103,7 @@ export default function FeedbackPage() {
         `,
       }
 
-      console.log("[v0] Feedback email data:", emailData)
+      console.log(" !  Feedback email data:", emailData)
 
       toast({
         title: "Feedback Submitted Successfully!",
@@ -122,7 +122,7 @@ export default function FeedbackPage() {
         allowContact: false,
       })
     } catch (error) {
-      console.error("[v0] Feedback submission error:", error)
+      console.error(" !  Feedback submission error:", error)
       toast({
         title: "Submission Failed",
         description: "There was an error submitting your feedback. Please try again.",
