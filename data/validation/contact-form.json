@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Contact Form Schema",
+  "description": "Validation schema for contact form submissions",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 50,
+      "pattern": "^[a-zA-Z\\s'-]+$",
+      "description": "Full name with letters, spaces, hyphens, and apostrophes only"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 100,
+      "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+      "description": "Valid email address"
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 100,
+      "description": "Subject line for the message"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 1000,
+      "description": "Message content between 10 and 1000 characters"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["general", "career-guidance", "technical-support", "partnership", "feedback"],
+      "description": "Category of the inquiry"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "urgent"],
+      "default": "medium",
+      "description": "Priority level of the inquiry"
+    }
+  },
+  "required": ["name", "email", "subject", "message"],
+  "additionalProperties": false
+}

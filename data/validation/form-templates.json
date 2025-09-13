@@ -1,0 +1,185 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Form Templates Schema",
+  "description": "Reusable form validation templates for common use cases",
+  "definitions": {
+    "personalInfo": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "pattern": "^[a-zA-Z\\s'-]+$"
+        },
+        "lastName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "pattern": "^[a-zA-Z\\s'-]+$"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 100
+        },
+        "phone": {
+          "type": "string",
+          "pattern": "^[+]?[1-9]\\d{1,14}$"
+        }
+      },
+      "required": ["firstName", "lastName", "email"]
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 100
+        },
+        "city": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 50
+        },
+        "state": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 50
+        },
+        "zipCode": {
+          "type": "string",
+          "pattern": "^\\d{5}(-\\d{4})?$"
+        },
+        "country": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 50
+        }
+      },
+      "required": ["street", "city", "country"]
+    },
+    "feedback": {
+      "type": "object",
+      "properties": {
+        "rating": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "comment": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 500
+        },
+        "category": {
+          "type": "string",
+          "enum": ["bug-report", "feature-request", "general-feedback", "complaint", "compliment"]
+        },
+        "anonymous": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": ["rating", "comment", "category"]
+    }
+  },
+  "templates": {
+    "userProfile": {
+      "allOf": [
+        { "$ref": "#/definitions/personalInfo" },
+        {
+          "properties": {
+            "bio": {
+              "type": "string",
+              "maxLength": 500
+            },
+            "website": {
+              "type": "string",
+              "format": "uri"
+            },
+            "linkedIn": {
+              "type": "string",
+              "pattern": "^https://www\\.linkedin\\.com/in/[a-zA-Z0-9-]+/?$"
+            }
+          }
+        }
+      ]
+    },
+    "jobApplication": {
+      "allOf": [
+        { "$ref": "#/definitions/personalInfo" },
+        { "$ref": "#/definitions/address" },
+        {
+          "properties": {
+            "position": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 100
+            },
+            "experience": {
+              "type": "string",
+              "enum": ["entry-level", "1-3-years", "3-5-years", "5-10-years", "10+-years"]
+            },
+            "coverLetter": {
+              "type": "string",
+              "minLength": 100,
+              "maxLength": 2000
+            },
+            "salary": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            }
+          },
+          "required": ["position", "experience", "coverLetter"]
+        }
+      ]
+    },
+    "eventRegistration": {
+      "allOf": [
+        { "$ref": "#/definitions/personalInfo" },
+        {
+          "properties": {
+            "eventId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "attendeeType": {
+              "type": "string",
+              "enum": ["student", "professional", "speaker", "sponsor"]
+            },
+            "dietaryRestrictions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["vegetarian", "vegan", "gluten-free", "dairy-free", "nut-allergy", "none"]
+              }
+            },
+            "emergencyContact": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 2,
+                  "maxLength": 100
+                },
+                "phone": {
+                  "type": "string",
+                  "pattern": "^[+]?[1-9]\\d{1,14}$"
+                },
+                "relationship": {
+                  "type": "string",
+                  "maxLength": 50
+                }
+              },
+              "required": ["name", "phone"]
+            }
+          },
+          "required": ["eventId", "attendeeType"]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,362 @@
+[
+  {
+    "quizId": "quiz_technology",
+    "interest": "Information Technology",
+    "description": "Discover if a career in technology aligns with your interests and skills",
+    "questions": [
+      {
+        "id": "q1",
+        "text": "Do you enjoy solving logical puzzles and complex problems?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Very much - I love challenging problems", "score": 3 },
+          { "id": "b", "text": "Sometimes - depends on the problem", "score": 2 },
+          { "id": "c", "text": "Occasionally - if I'm interested in the topic", "score": 1 },
+          { "id": "d", "text": "Not really - I prefer other activities", "score": 0 }
+        ]
+      },
+      {
+        "id": "q2",
+        "text": "How comfortable are you with learning new programming languages or technical tools?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Very comfortable - I enjoy learning new tech", "score": 3 },
+          { "id": "b", "text": "Somewhat comfortable - with proper guidance", "score": 2 },
+          { "id": "c", "text": "Neutral - I can learn if needed", "score": 1 },
+          { "id": "d", "text": "Uncomfortable - I prefer stable tools", "score": 0 }
+        ]
+      },
+      {
+        "id": "q3",
+        "text": "Do you like working with computers and digital systems?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Absolutely - I'm always on my computer", "score": 3 },
+          { "id": "b", "text": "Yes - I use computers daily for various tasks", "score": 2 },
+          { "id": "c", "text": "Moderately - for basic tasks", "score": 1 },
+          { "id": "d", "text": "Not particularly - I prefer offline activities", "score": 0 }
+        ]
+      },
+      {
+        "id": "q4",
+        "text": "How do you feel about working in teams on technical projects?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Love it - collaboration makes projects better", "score": 3 },
+          { "id": "b", "text": "Enjoy it - good for learning and sharing ideas", "score": 2 },
+          { "id": "c", "text": "It's okay - depends on the team", "score": 1 },
+          { "id": "d", "text": "Prefer working alone", "score": 0 }
+        ]
+      },
+      {
+        "id": "q5",
+        "text": "Are you interested in how technology impacts society and business?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Very interested - I follow tech trends closely", "score": 3 },
+          { "id": "b", "text": "Somewhat interested - I read about it occasionally", "score": 2 },
+          { "id": "c", "text": "Mildly interested - basic awareness", "score": 1 },
+          { "id": "d", "text": "Not interested - I focus on other areas", "score": 0 }
+        ]
+      }
+    ],
+    "mappings": [
+      {
+        "minScore": 0,
+        "maxScore": 5,
+        "recommendation": "Technology might not be the best fit for you right now. Consider exploring other fields that align better with your interests, such as arts, humanities, or social sciences.",
+        "suggestedCareers": ["Graphic Designer", "Clinical Psychologist", "Digital Marketing Specialist"],
+        "nextSteps": ["Explore creative fields", "Consider people-focused careers", "Take career counseling"]
+      },
+      {
+        "minScore": 6,
+        "maxScore": 10,
+        "recommendation": "You show some interest in technology. Consider starting with technology-adjacent fields or roles that combine tech with other interests.",
+        "suggestedCareers": ["Digital Marketing Specialist", "Data Analyst", "Technical Writer"],
+        "nextSteps": ["Take basic programming courses", "Explore tech bootcamps", "Shadow IT professionals"]
+      },
+      {
+        "minScore": 11,
+        "maxScore": 15,
+        "recommendation": "You have a strong affinity for technology! Consider pursuing formal education in computer science, information technology, or related fields.",
+        "suggestedCareers": ["Software Engineer", "Data Scientist", "Cybersecurity Analyst", "Web Developer"],
+        "nextSteps": [
+          "Pursue CS/IT degree",
+          "Build programming portfolio",
+          "Join coding communities",
+          "Apply for tech internships"
+        ]
+      }
+    ]
+  },
+  {
+    "quizId": "quiz_healthcare",
+    "interest": "Healthcare",
+    "description": "Explore if healthcare and helping others is your calling",
+    "questions": [
+      {
+        "id": "q1",
+        "text": "Do you feel fulfilled when helping others with their problems?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Absolutely - it's very rewarding", "score": 3 },
+          { "id": "b", "text": "Yes - I enjoy making a difference", "score": 2 },
+          { "id": "c", "text": "Sometimes - depends on the situation", "score": 1 },
+          { "id": "d", "text": "Not particularly - I prefer other activities", "score": 0 }
+        ]
+      },
+      {
+        "id": "q2",
+        "text": "How comfortable are you with medical or scientific concepts?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Very comfortable - I find them fascinating", "score": 3 },
+          { "id": "b", "text": "Comfortable - I can learn them well", "score": 2 },
+          { "id": "c", "text": "Somewhat comfortable - with effort", "score": 1 },
+          { "id": "d", "text": "Uncomfortable - they seem too complex", "score": 0 }
+        ]
+      },
+      {
+        "id": "q3",
+        "text": "Can you handle stressful situations and make quick decisions?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Yes - I work well under pressure", "score": 3 },
+          { "id": "b", "text": "Usually - I can manage stress effectively", "score": 2 },
+          { "id": "c", "text": "Sometimes - depends on the situation", "score": 1 },
+          { "id": "d", "text": "No - I prefer calm environments", "score": 0 }
+        ]
+      },
+      {
+        "id": "q4",
+        "text": "Are you comfortable with physical aspects of patient care?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Very comfortable - doesn't bother me", "score": 3 },
+          { "id": "b", "text": "Comfortable - I can adapt", "score": 2 },
+          { "id": "c", "text": "Somewhat comfortable - with training", "score": 1 },
+          { "id": "d", "text": "Uncomfortable - I'd prefer minimal contact", "score": 0 }
+        ]
+      },
+      {
+        "id": "q5",
+        "text": "Do you have strong communication and empathy skills?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Yes - people often come to me for support", "score": 3 },
+          { "id": "b", "text": "Good - I connect well with others", "score": 2 },
+          { "id": "c", "text": "Average - I can improve with practice", "score": 1 },
+          { "id": "d", "text": "Not my strength - I prefer technical work", "score": 0 }
+        ]
+      }
+    ],
+    "mappings": [
+      {
+        "minScore": 0,
+        "maxScore": 5,
+        "recommendation": "Healthcare may not be the ideal field for you. Consider exploring careers that better match your interests and strengths.",
+        "suggestedCareers": ["Software Engineer", "Financial Analyst", "Graphic Designer"],
+        "nextSteps": ["Explore other career fields", "Consider your core interests", "Take general career assessment"]
+      },
+      {
+        "minScore": 6,
+        "maxScore": 10,
+        "recommendation": "You show some interest in healthcare. Consider healthcare-adjacent roles or supportive positions in the medical field.",
+        "suggestedCareers": ["Medical Administrator", "Health Information Technician", "Pharmaceutical Sales"],
+        "nextSteps": ["Volunteer at hospitals", "Shadow healthcare workers", "Take health science courses"]
+      },
+      {
+        "minScore": 11,
+        "maxScore": 15,
+        "recommendation": "Healthcare seems like an excellent fit for you! Consider pursuing formal education in nursing, medicine, or allied health fields.",
+        "suggestedCareers": ["Registered Nurse", "Clinical Psychologist", "Physical Therapist", "Physician"],
+        "nextSteps": [
+          "Pursue healthcare degree",
+          "Gain clinical experience",
+          "Join pre-health organizations",
+          "Apply for medical programs"
+        ]
+      }
+    ]
+  },
+  {
+    "quizId": "quiz_business",
+    "interest": "Business & Finance",
+    "description": "Discover if business, entrepreneurship, and finance match your interests",
+    "questions": [
+      {
+        "id": "q1",
+        "text": "Do you enjoy analyzing data and financial information?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Love it - numbers tell great stories", "score": 3 },
+          { "id": "b", "text": "Yes - I find patterns interesting", "score": 2 },
+          { "id": "c", "text": "Sometimes - if it's relevant to me", "score": 1 },
+          { "id": "d", "text": "Not really - I prefer other activities", "score": 0 }
+        ]
+      },
+      {
+        "id": "q2",
+        "text": "Are you interested in how businesses operate and make money?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Very interested - I follow business news", "score": 3 },
+          { "id": "b", "text": "Interested - I like learning about successful companies", "score": 2 },
+          { "id": "c", "text": "Somewhat - basic curiosity", "score": 1 },
+          { "id": "d", "text": "Not interested - I focus elsewhere", "score": 0 }
+        ]
+      },
+      {
+        "id": "q3",
+        "text": "Do you have leadership qualities and enjoy managing projects?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Yes - I often take charge naturally", "score": 3 },
+          { "id": "b", "text": "Usually - I can lead when needed", "score": 2 },
+          { "id": "c", "text": "Sometimes - in familiar situations", "score": 1 },
+          { "id": "d", "text": "No - I prefer to follow others", "score": 0 }
+        ]
+      },
+      {
+        "id": "q4",
+        "text": "Are you comfortable with risk-taking and uncertainty?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Very comfortable - calculated risks excite me", "score": 3 },
+          { "id": "b", "text": "Comfortable - with proper planning", "score": 2 },
+          { "id": "c", "text": "Somewhat - depends on the stakes", "score": 1 },
+          { "id": "d", "text": "Uncomfortable - I prefer stability", "score": 0 }
+        ]
+      },
+      {
+        "id": "q5",
+        "text": "Do you enjoy networking and building professional relationships?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Love it - I'm naturally social", "score": 3 },
+          { "id": "b", "text": "Enjoy it - good for career growth", "score": 2 },
+          { "id": "c", "text": "It's okay - I can do it when needed", "score": 1 },
+          { "id": "d", "text": "Don't enjoy it - I prefer working alone", "score": 0 }
+        ]
+      }
+    ],
+    "mappings": [
+      {
+        "minScore": 0,
+        "maxScore": 5,
+        "recommendation": "Business and finance might not align with your current interests. Consider exploring creative, technical, or service-oriented fields.",
+        "suggestedCareers": ["Graphic Designer", "Software Engineer", "Clinical Psychologist"],
+        "nextSteps": ["Explore creative careers", "Consider technical fields", "Look into helping professions"]
+      },
+      {
+        "minScore": 6,
+        "maxScore": 10,
+        "recommendation": "You show moderate interest in business. Consider business-adjacent roles or positions that combine business with other interests.",
+        "suggestedCareers": ["Digital Marketing Specialist", "Project Manager", "Business Analyst"],
+        "nextSteps": ["Take business courses", "Join business clubs", "Seek internships in business"]
+      },
+      {
+        "minScore": 11,
+        "maxScore": 15,
+        "recommendation": "Business and finance appear to be excellent matches for you! Consider pursuing formal business education or entrepreneurship.",
+        "suggestedCareers": ["Financial Analyst", "Business Manager", "Investment Banker", "Entrepreneur"],
+        "nextSteps": [
+          "Pursue business degree",
+          "Start a small business",
+          "Join entrepreneurship programs",
+          "Network with business professionals"
+        ]
+      }
+    ]
+  },
+  {
+    "quizId": "quiz_creative",
+    "interest": "Creative Arts",
+    "description": "Explore if creative and artistic pursuits are your passion",
+    "questions": [
+      {
+        "id": "q1",
+        "text": "Do you enjoy creating visual art, designs, or other creative works?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Absolutely - I create art regularly", "score": 3 },
+          { "id": "b", "text": "Yes - I enjoy creative projects", "score": 2 },
+          { "id": "c", "text": "Sometimes - when inspired", "score": 1 },
+          { "id": "d", "text": "Not really - I prefer other activities", "score": 0 }
+        ]
+      },
+      {
+        "id": "q2",
+        "text": "Are you comfortable with subjective feedback and criticism of your work?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Yes - feedback helps me improve", "score": 3 },
+          { "id": "b", "text": "Usually - I can handle constructive criticism", "score": 2 },
+          { "id": "c", "text": "Sometimes - depends on how it's delivered", "score": 1 },
+          { "id": "d", "text": "No - I prefer objective evaluation", "score": 0 }
+        ]
+      },
+      {
+        "id": "q3",
+        "text": "Do you have a strong sense of aesthetics and visual composition?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Yes - people often compliment my taste", "score": 3 },
+          { "id": "b", "text": "Good - I notice design details", "score": 2 },
+          { "id": "c", "text": "Average - I can learn with practice", "score": 1 },
+          { "id": "d", "text": "Not particularly - I don't focus on visuals", "score": 0 }
+        ]
+      },
+      {
+        "id": "q4",
+        "text": "Are you willing to work irregular hours and handle project-based work?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Yes - I prefer flexible schedules", "score": 3 },
+          { "id": "b", "text": "Usually - I can adapt to project needs", "score": 2 },
+          { "id": "c", "text": "Sometimes - depends on the project", "score": 1 },
+          { "id": "d", "text": "No - I prefer regular 9-5 schedules", "score": 0 }
+        ]
+      },
+      {
+        "id": "q5",
+        "text": "Do you enjoy experimenting with new techniques and styles?",
+        "type": "single",
+        "choices": [
+          { "id": "a", "text": "Love it - I'm always trying new things", "score": 3 },
+          { "id": "b", "text": "Yes - experimentation leads to growth", "score": 2 },
+          { "id": "c", "text": "Sometimes - when I have time", "score": 1 },
+          { "id": "d", "text": "Not really - I prefer proven methods", "score": 0 }
+        ]
+      }
+    ],
+    "mappings": [
+      {
+        "minScore": 0,
+        "maxScore": 5,
+        "recommendation": "Creative arts may not be the best fit for your current interests. Consider exploring more structured or analytical fields.",
+        "suggestedCareers": ["Financial Analyst", "Software Engineer", "Registered Nurse"],
+        "nextSteps": ["Explore analytical careers", "Consider structured professions", "Take aptitude tests"]
+      },
+      {
+        "minScore": 6,
+        "maxScore": 10,
+        "recommendation": "You show some creative potential. Consider careers that blend creativity with other skills or more structured creative roles.",
+        "suggestedCareers": ["Digital Marketing Specialist", "UX Designer", "Technical Writer"],
+        "nextSteps": ["Take art classes", "Build a portfolio", "Explore design software"]
+      },
+      {
+        "minScore": 11,
+        "maxScore": 15,
+        "recommendation": "Creative arts seem perfect for you! Consider pursuing formal art education or building a strong creative portfolio.",
+        "suggestedCareers": ["Graphic Designer", "Art Director", "Illustrator", "Creative Director"],
+        "nextSteps": [
+          "Build strong portfolio",
+          "Pursue art degree",
+          "Network with creatives",
+          "Seek design internships"
+        ]
+      }
+    ]
+  }
+]

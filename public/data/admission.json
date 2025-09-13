@@ -1,0 +1,144 @@
+{
+  "title": "Admission & Career Coaching",
+  "subtitle": "Practical guidance to choose the right academic stream, prepare for higher studies, and explore global opportunities",
+  "streams": [
+    {
+      "id": "science",
+      "name": "Science Stream",
+      "icon": "🔬",
+      "description": "Explore Physics, Chemistry, Biology, and Mathematics to build a strong foundation for careers in healthcare, engineering, biotechnology, research, and emerging technologies.",
+      "requirements": [
+        "High school diploma with Physics, Chemistry, and Mathematics/Biology",
+        "Minimum 75% in PCM/PCB subjects",
+        "Qualify national entrance exams (JEE for engineering / NEET for medicine)",
+        "Strong analytical and problem-solving skills"
+      ],
+      "careers": ["Engineering", "Medicine", "Biotechnology", "Pharmacy", "Research", "Data Science", "Technology & Innovation"],
+      "image": "/images/science.jpg"
+    },
+    {
+      "id": "commerce",
+      "name": "Commerce Stream",
+      "icon": "💼",
+      "description": "Learn Accounting, Economics, and Business Studies to prepare for careers in finance, entrepreneurship, corporate law, and global business management.",
+      "requirements": [
+        "High school diploma with commerce or mathematics subjects",
+        "Basic mathematics and analytical proficiency",
+        "Interest in business, economics, and finance",
+        "Strong communication and organizational skills"
+      ],
+      "careers": ["Business Management", "Finance", "Accounting", "Banking", "Entrepreneurship", "Economics", "Corporate Law"],
+      "image": "/images/commerce.jpg"
+    },
+    {
+      "id": "arts",
+      "name": "Arts & Humanities",
+      "icon": "🎨",
+      "description": "Dive into Literature, History, Psychology, Sociology, and Fine Arts — fostering creativity, critical thinking, cultural understanding, and social awareness.",
+      "requirements": [
+        "High school diploma",
+        "Creative and analytical thinking abilities",
+        "Strong language and communication skills",
+        "Interest in culture, society, and human behavior"
+      ],
+      "careers": ["Teaching", "Media & Journalism", "Psychology", "Arts & Design", "Social Work", "Public Relations", "Civil Services"],
+      "image": "/images/arts.jpg"
+    },
+    {
+      "id": "technical",
+      "name": "Technical/Vocational",
+      "icon": "⚙️",
+      "description": "Hands-on training in Engineering, IT, Design, and Skilled Trades designed to prepare you for immediate job opportunities, industry certifications, and entrepreneurship.",
+      "requirements": [
+        "Technical aptitude and interest in applied learning",
+        "Hands-on learning preference",
+        "Problem-solving and practical skills",
+        "Relevant industry certifications or training"
+      ],
+      "careers": ["Technical Support", "Manufacturing", "IT Services", "Automotive & Mechanical Trades", "Construction", "Skilled Crafts", "Entrepreneurship"],
+      "image": "/images/technical.jpg"
+    }
+  ],
+  "studyAbroadSteps": [
+    {
+      "step": 1,
+      "title": "Research & Planning",
+      "description": "Explore top-ranked universities, admission deadlines, and available scholarships to choose your ideal study destination.",
+      "details": ["Research university rankings and program reputation", "Check admission deadlines and entry requirements", "Compare tuition costs, living expenses, and scholarship options"]
+    },
+    {
+      "step": 2,
+      "title": "Language Proficiency",
+      "description": "Prepare for IELTS, TOEFL, or PTE with practice tests and coaching to meet admission requirements.",
+      "details": ["Register for language proficiency exams", "Take mock tests or preparation courses", "Achieve the minimum required score for your chosen university"]
+    },
+    {
+      "step": 3,
+      "title": "Application Process",
+      "description": "Submit well-prepared applications to universities, ensuring all documents and essays are complete.",
+      "details": ["Prepare academic transcripts and certificates", "Write strong personal statements or essays", "Submit applications before official deadlines"]
+    },
+    {
+      "step": 4,
+      "title": "Financial Planning",
+      "description": "Plan your education funding with scholarships, part-time work, and student loans.",
+      "details": ["Estimate total costs (tuition, living, travel)", "Apply for government and university scholarships", "Arrange education loans or sponsorships if needed"]
+    },
+    {
+      "step": 5,
+      "title": "Visa Application",
+      "description": "Secure your student visa by preparing documents, attending interviews, and paying application fees on time.",
+      "details": ["Collect required financial and admission documents", "Schedule and attend your visa interview", "Pay visa application and service fees promptly"]
+    }
+  ],
+  "countries": [
+  {
+    "name": "United States",
+    "flag": "/images/flags/us.png",
+    "popular": "MIT, Harvard, Stanford — global leaders in research and innovation.",
+    "info": "The US has over 4,000 universities with world-class programs. Known for innovation, cultural diversity, and post-graduation job opportunities."
+  },
+  {
+    "name": "United Kingdom",
+    "flag": "/images/flags/uk.png",
+    "popular": "Oxford, Cambridge, Imperial — rich academic tradition and globally recognized degrees.",
+    "info": "The UK offers globally respected degrees, shorter course durations, and access to Europe. Ideal for students seeking academic prestige."
+  },
+  {
+    "name": "Canada",
+    "flag": "/images/flags/ca.png",
+    "popular": "Toronto, UBC, McGill — affordable education with post-study work opportunities.",
+    "info": "Canada is affordable and welcoming to international students. Known for safe campuses, high living standards, and generous work permits."
+  },
+  {
+    "name": "Australia",
+    "flag": "/images/flags/au.png",
+    "popular": "Melbourne, Sydney, ANU — world-class universities and vibrant student life.",
+    "info": "Australia combines top universities with a high quality of life. Offers post-study work visas and is a hub for research in the Asia-Pacific."
+  },
+  {
+    "name": "Germany",
+    "flag": "/images/flags/ge.png",
+    "popular": "TUM, Heidelberg, Berlin — affordable tuition and excellence in engineering and sciences.",
+    "info": "Germany offers tuition-free or low-cost education, especially strong in engineering and sciences. Many programs are taught in English."
+  },
+  {
+    "name": "Netherlands",
+    "flag": "/images/flags/nl.png",
+    "popular": "Delft, Amsterdam, Eindhoven — innovative programs taught in English with global exposure.",
+    "info": "The Netherlands provides innovative, English-taught programs, strong in design and engineering, and is popular for its multicultural environment."
+  }
+],
+
+  "downloads": [
+    { "label": "Step-by-Step College Admission Guide (PDF)", "file": "/downloads/admission-guide.pdf" },
+    { "label": "Complete International Study Checklist (PDF)", "file": "/downloads/study-abroad-checklist.pdf" },
+    { "label": "Global Scholarships & Funding Opportunities (PDF)", "file": "/downloads/scholarship-guide.pdf" }
+  ],
+  "externalResources": [
+    { "name": "IELTS Official", "url": "https://ielts.org", "desc": "Official site for IELTS registration, preparation materials, and test information." },
+    { "name": "TOEFL", "url": "https://toefl.org", "desc": "Register for TOEFL exams, access study resources, and view results online." },
+    { "name": "Common App", "url": "https://commonapp.org", "desc": "US college application portal for multiple universities with one form." },
+    { "name": "UCAS", "url": "https://ucas.com", "desc": "Centralized application platform for applying to UK universities." }
+  ]
+}

@@ -1,0 +1,224 @@
+[
+  {
+    "id": "career_001",
+    "title": "Software Engineer",
+    "industry": "Technology",
+    "description": "Design, develop, and maintain software applications and systems using various programming languages and frameworks. Work on everything from mobile apps to enterprise systems, collaborating with cross-functional teams to deliver innovative solutions.",
+    "skills": ["Programming", "Problem Solving", "Algorithms", "Git", "Testing", "Debugging", "System Design"],
+    "education": [
+      "Bachelor's in Computer Science",
+      "Coding Bootcamp",
+      "Self-taught with Portfolio",
+      "Master's in Software Engineering"
+    ],
+    "salaryRange": {
+      "min": 45000,
+      "max": 150000,
+      "currency": "USD"
+    },
+    "image": "/placeholder.svg?height=200&width=300",
+    "tags": ["developer", "engineering", "remote-friendly", "high-demand", "tech"],
+    "level": ["Graduate", "Professional"],
+    "growthRate": "22%",
+    "jobOutlook": "Much faster than average"
+  },
+  {
+    "id": "career_002",
+    "title": "Clinical Psychologist",
+    "industry": "Healthcare",
+    "description": "Assess, diagnose, and treat mental health disorders through therapy and psychological interventions. Help individuals, families, and groups overcome emotional and behavioral challenges to improve their quality of life.",
+    "skills": [
+      "Counseling",
+      "Active Listening",
+      "Empathy",
+      "Research",
+      "Communication",
+      "Assessment",
+      "Treatment Planning"
+    ],
+    "education": [
+      "Master's in Psychology",
+      "Doctoral Degree (Ph.D. or Psy.D.)",
+      "Licensed Practice",
+      "Internship Experience"
+    ],
+    "salaryRange": {
+      "min": 50000,
+      "max": 120000,
+      "currency": "USD"
+    },
+    "image": "/placeholder.svg?height=200&width=300",
+    "tags": ["healthcare", "mental-health", "helping-others", "licensed-profession"],
+    "level": ["Graduate", "Professional"],
+    "growthRate": "8%",
+    "jobOutlook": "Faster than average"
+  },
+  {
+    "id": "career_003",
+    "title": "Digital Marketing Specialist",
+    "industry": "Marketing",
+    "description": "Create and execute digital marketing campaigns across various online platforms to promote products and services. Analyze data to optimize campaigns and drive customer engagement and conversions.",
+    "skills": [
+      "SEO",
+      "Social Media",
+      "Content Creation",
+      "Analytics",
+      "PPC Advertising",
+      "Email Marketing",
+      "Brand Strategy"
+    ],
+    "education": [
+      "Bachelor's in Marketing",
+      "Digital Marketing Certification",
+      "Business Degree",
+      "Communications Degree"
+    ],
+    "salaryRange": {
+      "min": 35000,
+      "max": 85000,
+      "currency": "USD"
+    },
+    "image": "/placeholder.svg?height=200&width=300",
+    "tags": ["marketing", "creative", "data-driven", "remote-friendly", "social-media"],
+    "level": ["Student", "Graduate", "Professional"],
+    "growthRate": "10%",
+    "jobOutlook": "Faster than average"
+  },
+  {
+    "id": "career_004",
+    "title": "Mechanical Engineer",
+    "industry": "Engineering",
+    "description": "Design, develop, and test mechanical devices, engines, machines, and other mechanical systems. Apply principles of physics and materials science to create innovative solutions for manufacturing and industrial applications.",
+    "skills": [
+      "CAD Software",
+      "Problem Solving",
+      "Mathematics",
+      "Physics",
+      "Project Management",
+      "Manufacturing",
+      "Quality Control"
+    ],
+    "education": [
+      "Bachelor's in Mechanical Engineering",
+      "Professional Engineering License",
+      "Master's in Engineering",
+      "Internship Experience"
+    ],
+    "salaryRange": {
+      "min": 55000,
+      "max": 110000,
+      "currency": "USD"
+    },
+    "image": "/placeholder.svg?height=200&width=300",
+    "tags": ["engineering", "manufacturing", "design", "technical", "problem-solving"],
+    "level": ["Graduate", "Professional"],
+    "growthRate": "7%",
+    "jobOutlook": "As fast as average"
+  },
+  {
+    "id": "career_005",
+    "title": "Graphic Designer",
+    "industry": "Creative Arts",
+    "description": "Create visual concepts and designs for print and digital media to communicate ideas and messages effectively. Work with clients to develop branding, marketing materials, and user interfaces that engage target audiences.",
+    "skills": [
+      "Adobe Creative Suite",
+      "Typography",
+      "Color Theory",
+      "Creativity",
+      "Client Communication",
+      "Branding",
+      "Layout Design"
+    ],
+    "education": ["Bachelor's in Graphic Design", "Art School", "Portfolio-based Entry", "Design Certification"],
+    "salaryRange": {
+      "min": 30000,
+      "max": 75000,
+      "currency": "USD"
+    },
+    "image": "/placeholder.svg?height=200&width=300",
+    "tags": ["creative", "visual-arts", "freelance-friendly", "portfolio-based", "design"],
+    "level": ["Student", "Graduate", "Professional"],
+    "growthRate": "3%",
+    "jobOutlook": "As fast as average"
+  },
+  {
+    "id": "career_006",
+    "title": "Data Scientist",
+    "industry": "Technology",
+    "description": "Analyze complex data sets to extract insights and inform business decisions. Use statistical methods, machine learning, and programming to solve real-world problems and predict future trends.",
+    "skills": ["Python", "R", "Statistics", "Machine Learning", "Data Visualization", "SQL", "Critical Thinking"],
+    "education": [
+      "Bachelor's in Statistics/Math/CS",
+      "Master's in Data Science",
+      "PhD in related field",
+      "Online Certifications"
+    ],
+    "salaryRange": {
+      "min": 60000,
+      "max": 140000,
+      "currency": "USD"
+    },
+    "image": "/placeholder.svg?height=200&width=300",
+    "tags": ["data", "analytics", "tech", "high-demand", "remote-friendly"],
+    "level": ["Graduate", "Professional"],
+    "growthRate": "35%",
+    "jobOutlook": "Much faster than average"
+  },
+  {
+    "id": "career_007",
+    "title": "Registered Nurse",
+    "industry": "Healthcare",
+    "description": "Provide direct patient care in hospitals, clinics, and other healthcare settings. Monitor patient health, administer medications, and collaborate with healthcare teams to ensure optimal patient outcomes.",
+    "skills": [
+      "Patient Care",
+      "Medical Knowledge",
+      "Communication",
+      "Critical Thinking",
+      "Compassion",
+      "Time Management",
+      "Teamwork"
+    ],
+    "education": [
+      "Associate Degree in Nursing",
+      "Bachelor of Science in Nursing",
+      "Nursing License (NCLEX-RN)",
+      "Clinical Experience"
+    ],
+    "salaryRange": {
+      "min": 50000,
+      "max": 90000,
+      "currency": "USD"
+    },
+    "image": "/placeholder.svg?height=200&width=300",
+    "tags": ["healthcare", "patient-care", "essential-worker", "stable-employment"],
+    "level": ["Graduate", "Professional"],
+    "growthRate": "7%",
+    "jobOutlook": "Faster than average"
+  },
+  {
+    "id": "career_008",
+    "title": "Financial Analyst",
+    "industry": "Finance",
+    "description": "Evaluate investment opportunities, analyze financial data, and provide recommendations to help organizations make informed financial decisions. Create financial models and reports to support business strategy.",
+    "skills": [
+      "Financial Modeling",
+      "Excel",
+      "Analysis",
+      "Communication",
+      "Attention to Detail",
+      "Economics",
+      "Risk Assessment"
+    ],
+    "education": ["Bachelor's in Finance/Economics", "CFA Certification", "MBA", "Accounting Background"],
+    "salaryRange": {
+      "min": 45000,
+      "max": 95000,
+      "currency": "USD"
+    },
+    "image": "/placeholder.svg?height=200&width=300",
+    "tags": ["finance", "analytical", "business", "numbers", "corporate"],
+    "level": ["Graduate", "Professional"],
+    "growthRate": "5%",
+    "jobOutlook": "As fast as average"
+  }
+]

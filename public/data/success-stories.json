@@ -1,0 +1,164 @@
+[
+  {
+    "id": "story_001",
+    "name": "Sarah Chen",
+    "photo": "/placeholder.svg?height=150&width=150",
+    "currentRole": "Senior Software Engineer",
+    "company": "Google",
+    "domain": "Technology",
+    "previousBackground": "Art History Major",
+    "storyShort": "From art history to tech giant - how Sarah made a complete career pivot",
+    "storyFull": "Sarah graduated with a degree in Art History, but after struggling to find fulfilling work in her field, she decided to learn programming through online courses and bootcamps. Starting with HTML and CSS, she gradually built up her skills in JavaScript and React. After 18 months of dedicated learning and building projects, she landed her first developer role at a startup. Three years later, she joined Google as a senior software engineer. Sarah's advice: 'Don't let your background define your future. With dedication and the right resources, you can transition into any field that excites you.'",
+    "keyLessons": [
+      "Career pivots are possible with dedication",
+      "Online learning can be as effective as formal education",
+      "Building projects is crucial for demonstrating skills",
+      "Networking and community involvement accelerate growth"
+    ],
+    "timeline": [
+      { "year": "2019", "event": "Graduated with Art History degree" },
+      { "year": "2020", "event": "Started learning programming online" },
+      { "year": "2021", "event": "Completed coding bootcamp" },
+      { "year": "2021", "event": "First developer job at startup" },
+      { "year": "2024", "event": "Joined Google as Senior Engineer" }
+    ],
+    "inspiration": "Technology can be learned by anyone willing to put in the effort",
+    "tags": ["career-change", "self-taught", "technology", "persistence"],
+    "featured": true
+  },
+  {
+    "id": "story_002",
+    "name": "Marcus Johnson",
+    "photo": "/placeholder.svg?height=150&width=150",
+    "currentRole": "Registered Nurse",
+    "company": "Johns Hopkins Hospital",
+    "domain": "Healthcare",
+    "previousBackground": "High School Graduate",
+    "storyShort": "From uncertain high school graduate to life-saving healthcare professional",
+    "storyFull": "Marcus wasn't sure what he wanted to do after high school. He worked various jobs for two years before a volunteer experience at a local hospital opened his eyes to nursing. Despite financial challenges, he enrolled in a community college nursing program while working part-time. The program was demanding, but Marcus was motivated by the impact he could make on patients' lives. After passing his NCLEX exam, he started at a local hospital and eventually transferred to Johns Hopkins, one of the nation's top medical centers. Marcus says: 'Nursing gave me purpose. Every day I know I'm making a real difference in people's lives during their most vulnerable moments.'",
+    "keyLessons": [
+      "It's okay to take time to find your path",
+      "Volunteer work can reveal hidden passions",
+      "Community college can be a great starting point",
+      "Healthcare careers offer deep personal fulfillment"
+    ],
+    "timeline": [
+      { "year": "2018", "event": "Graduated high school" },
+      { "year": "2020", "event": "Volunteered at local hospital" },
+      { "year": "2021", "event": "Enrolled in nursing program" },
+      { "year": "2023", "event": "Passed NCLEX, started first nursing job" },
+      { "year": "2024", "event": "Joined Johns Hopkins Hospital" }
+    ],
+    "inspiration": "Healthcare careers provide the opportunity to make a meaningful impact every day",
+    "tags": ["healthcare", "community-college", "volunteering", "purpose-driven"],
+    "featured": true
+  },
+  {
+    "id": "story_003",
+    "name": "Emily Rodriguez",
+    "photo": "/placeholder.svg?height=150&width=150",
+    "currentRole": "Creative Director",
+    "company": "Ogilvy",
+    "domain": "Creative Arts",
+    "previousBackground": "Marketing Coordinator",
+    "storyShort": "From marketing coordinator to leading creative campaigns for global brands",
+    "storyFull": "Emily started her career as a marketing coordinator at a small agency, handling mostly administrative tasks. However, she was always drawn to the creative side of campaigns. She began taking on small design projects after hours and enrolled in evening design classes. Her breakthrough came when she proposed a complete rebrand for a struggling client - the campaign was so successful that she was promoted to art director. Emily continued to push creative boundaries and build her portfolio. Five years later, she was recruited by Ogilvy as a Creative Director, now leading campaigns for Fortune 500 companies. Emily reflects: 'I learned that you don't have to wait for permission to be creative. Start creating, and opportunities will follow.'",
+    "keyLessons": [
+      "Take initiative on projects outside your job description",
+      "Continuous learning is essential in creative fields",
+      "A strong portfolio speaks louder than formal credentials",
+      "Creative careers reward bold thinking and risk-taking"
+    ],
+    "timeline": [
+      { "year": "2019", "event": "Started as marketing coordinator" },
+      { "year": "2020", "event": "Began taking design classes" },
+      { "year": "2021", "event": "Led successful rebranding project" },
+      { "year": "2022", "event": "Promoted to Art Director" },
+      { "year": "2024", "event": "Joined Ogilvy as Creative Director" }
+    ],
+    "inspiration": "Creativity combined with business acumen can lead to extraordinary career growth",
+    "tags": ["creative-arts", "self-improvement", "portfolio", "leadership"],
+    "featured": false
+  },
+  {
+    "id": "story_004",
+    "name": "David Kim",
+    "photo": "/placeholder.svg?height=150&width=150",
+    "currentRole": "Investment Analyst",
+    "company": "Goldman Sachs",
+    "domain": "Finance",
+    "previousBackground": "Engineering Student",
+    "storyShort": "Engineering student discovers passion for finance and lands dream job on Wall Street",
+    "storyFull": "David was studying mechanical engineering when he took an elective finance course that changed everything. He became fascinated by financial markets and started a investment club at his university. Despite having no formal finance background, David spent his free time learning about financial modeling and market analysis. He applied for finance internships and was initially rejected multiple times due to his engineering background. However, his persistence paid off when a small investment firm gave him a chance. His analytical engineering mindset proved valuable in financial analysis. After graduation, he leveraged his internship experience to land a position at Goldman Sachs. David advises: 'Don't let your major limit your career options. Skills are transferable, and passion can overcome any background gap.'",
+    "keyLessons": [
+      "Elective courses can reveal unexpected career paths",
+      "Extracurricular activities demonstrate genuine interest",
+      "Persistence in applications eventually pays off",
+      "Technical backgrounds are valuable in finance"
+    ],
+    "timeline": [
+      { "year": "2020", "event": "Took first finance course" },
+      { "year": "2021", "event": "Started university investment club" },
+      { "year": "2022", "event": "Secured finance internship" },
+      { "year": "2023", "event": "Graduated with engineering degree" },
+      { "year": "2024", "event": "Joined Goldman Sachs as analyst" }
+    ],
+    "inspiration": "Your academic major doesn't have to define your career destination",
+    "tags": ["career-pivot", "finance", "persistence", "transferable-skills"],
+    "featured": true
+  },
+  {
+    "id": "story_005",
+    "name": "Dr. Aisha Patel",
+    "photo": "/placeholder.svg?height=150&width=150",
+    "currentRole": "Clinical Psychologist",
+    "company": "Private Practice",
+    "domain": "Healthcare",
+    "previousBackground": "Corporate Consultant",
+    "storyShort": "Corporate consultant finds true calling in mental health after personal experience",
+    "storyFull": "Dr. Aisha Patel spent eight years as a successful management consultant, traveling the world and advising Fortune 500 companies. However, after experiencing burnout and seeking therapy herself, she discovered a passion for mental health. At 30, she made the bold decision to return to school for a psychology doctorate while maintaining part-time consulting work. The journey was challenging - balancing coursework, clinical rotations, and financial responsibilities. But Aisha was driven by her desire to help others navigate mental health challenges. After completing her Ph.D. and clinical training, she opened her own practice specializing in workplace stress and career transitions. Dr. Patel shares: 'Sometimes the most rewarding career is the one that emerges from your own life experiences. It's never too late to pursue work that truly fulfills you.'",
+    "keyLessons": [
+      "Personal experiences can guide career decisions",
+      "It's possible to change careers at any age",
+      "Graduate school while working requires careful planning",
+      "Mental health careers are increasingly important"
+    ],
+    "timeline": [
+      { "year": "2012", "event": "Started management consulting career" },
+      { "year": "2020", "event": "Experienced burnout, began therapy" },
+      { "year": "2021", "event": "Enrolled in psychology doctoral program" },
+      { "year": "2024", "event": "Completed Ph.D. and clinical training" },
+      { "year": "2024", "event": "Opened private psychology practice" }
+    ],
+    "inspiration": "Your life experiences can become the foundation for helping others",
+    "tags": ["career-change", "mental-health", "graduate-school", "entrepreneurship"],
+    "featured": false
+  },
+  {
+    "id": "story_006",
+    "name": "James Thompson",
+    "photo": "/placeholder.svg?height=150&width=150",
+    "currentRole": "Mechanical Engineer",
+    "company": "Tesla",
+    "domain": "Engineering",
+    "previousBackground": "Community College Student",
+    "storyShort": "Community college graduate engineers his way to Tesla through determination and hands-on learning",
+    "storyFull": "James started at a community college because he couldn't afford a four-year university. He studied mechanical engineering technology and worked in his school's machine shop to pay for tuition. After earning his associate degree, he transferred to a state university to complete his bachelor's in mechanical engineering. James supplemented his education by building projects at home - from 3D printers to small engines. His hands-on experience and portfolio of projects impressed recruiters at a career fair. He started at a small manufacturing company, then moved to an automotive supplier, steadily building his expertise in electric vehicle technology. When Tesla expanded their engineering team, James's combination of practical experience and EV knowledge made him an ideal candidate. James emphasizes: 'Community college gave me a strong foundation, but it was the projects I built on my own that really set me apart. Never underestimate the power of hands-on learning.'",
+    "keyLessons": [
+      "Community college can be a smart financial start",
+      "Hands-on projects demonstrate real-world skills",
+      "Career progression often involves strategic job moves",
+      "Specializing in emerging technologies creates opportunities"
+    ],
+    "timeline": [
+      { "year": "2018", "event": "Started at community college" },
+      { "year": "2020", "event": "Transferred to state university" },
+      { "year": "2022", "event": "Graduated with engineering degree" },
+      { "year": "2023", "event": "Joined automotive supplier" },
+      { "year": "2024", "event": "Hired by Tesla as mechanical engineer" }
+    ],
+    "inspiration": "Practical experience and continuous learning can open doors to dream companies",
+    "tags": ["community-college", "hands-on-learning", "engineering", "career-progression"],
+    "featured": true
+  }
+]

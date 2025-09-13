@@ -1,0 +1,459 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Enhanced CSS custom properties with professional color system */
+:root {
+  /* Base color palette with improved contrast ratios */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+
+  /* Professional chart color palette */
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+
+  /* Enhanced radius system for consistent design */
+  --radius: 0.625rem;
+
+  /* Sidebar color system for navigation */
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Professional animation system variables */
+  --animation-duration-instant: 0.1s;
+  --animation-duration-fast: 0.2s;
+  --animation-duration-normal: 0.3s;
+  --animation-duration-slow: 0.5s;
+  --animation-duration-slower: 0.8s;
+
+  /* Easing functions for natural motion */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-elastic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Responsive spacing system */
+  --spacing-xs: clamp(0.25rem, 1vw, 0.5rem);
+  --spacing-sm: clamp(0.5rem, 2vw, 1rem);
+  --spacing-md: clamp(1rem, 3vw, 1.5rem);
+  --spacing-lg: clamp(1.5rem, 4vw, 2rem);
+  --spacing-xl: clamp(2rem, 5vw, 3rem);
+  --spacing-2xl: clamp(3rem, 6vw, 4rem);
+}
+
+/* Enhanced dark mode with better color relationships */
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+
+  /* Dark mode chart colors with better visibility */
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+
+  /* Dark mode sidebar colors */
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+/* Enhanced Tailwind theme configuration with professional design tokens */
+@theme inline {
+  /* Typography system with proper hierarchy */
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-space-grotesk);
+
+  /* Color system mapping for consistent usage */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Chart color system for data visualization */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Radius system for consistent rounded corners */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Sidebar color system */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* Enhanced base layer with professional defaults */
+@layer base {
+  /* Universal box-sizing and outline styles */
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box; /* Consistent box model */
+  }
+
+  /* Root element optimizations */
+  html {
+    scroll-behavior: smooth; /* Smooth scrolling for better UX */
+    text-size-adjust: 100%; /* Prevent text scaling on mobile */
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlights on mobile */
+  }
+
+  /* Body with enhanced typography and transitions */
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1; /* Enable font ligatures */
+    text-rendering: optimizeLegibility; /* Better text rendering */
+    -webkit-font-smoothing: antialiased; /* Smooth fonts on WebKit */
+    -moz-osx-font-smoothing: grayscale; /* Smooth fonts on Firefox */
+    transition: background-color var(--animation-duration-normal) var(--ease-in-out), color
+      var(--animation-duration-normal) var(--ease-in-out);
+  }
+
+  /* Professional heading hierarchy with responsive scaling */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    text-wrap: balance; /* Better line breaks for headings */
+  }
+
+  h1 {
+    font-size: clamp(1.875rem, 5vw, 3.75rem);
+  }
+  h2 {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+  }
+  h3 {
+    font-size: clamp(1.25rem, 3vw, 2.25rem);
+  }
+  h4 {
+    font-size: clamp(1.125rem, 2.5vw, 1.875rem);
+  }
+  h5 {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+  }
+  h6 {
+    font-size: clamp(0.875rem, 1.5vw, 1.25rem);
+  }
+
+  /* Enhanced paragraph and text styling */
+  p {
+    line-height: 1.6;
+    text-wrap: pretty; /* Better line breaks for paragraphs */
+    margin-bottom: 1rem;
+  }
+
+  /* Professional link styling with smooth transitions */
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--animation-duration-fast) var(--ease-in-out);
+  }
+
+  a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+  }
+
+  /* Enhanced focus states for accessibility */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Professional button base styles */
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    transition: all var(--animation-duration-fast) var(--ease-in-out);
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  /* Enhanced form element styling */
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+    transition: border-color var(--animation-duration-fast) var(--ease-in-out), box-shadow
+      var(--animation-duration-fast) var(--ease-in-out);
+  }
+
+  /* Professional scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-muted);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-muted-foreground);
+  }
+}
+
+/* Professional utility classes for enhanced animations */
+@layer utilities {
+  /* Staggered animation delays for list items */
+  .animate-stagger > *:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .animate-stagger > *:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .animate-stagger > *:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .animate-stagger > *:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .animate-stagger > *:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+
+  /* Professional hover effects */
+  .hover-lift {
+    transition: transform var(--animation-duration-normal) var(--ease-out);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Smooth scale animations */
+  .hover-scale {
+    transition: transform var(--animation-duration-fast) var(--ease-out);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  /* Professional glow effects */
+  .glow-on-hover {
+    transition: box-shadow var(--animation-duration-normal) var(--ease-out);
+  }
+
+  .glow-on-hover:hover {
+    box-shadow: 0 0 20px var(--color-primary);
+  }
+
+  /* Responsive text utilities */
+  .text-fluid-sm {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+  }
+  .text-fluid-base {
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+  }
+  .text-fluid-lg {
+    font-size: clamp(1.125rem, 3vw, 1.25rem);
+  }
+  .text-fluid-xl {
+    font-size: clamp(1.25rem, 3.5vw, 1.5rem);
+  }
+  .text-fluid-2xl {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  /* Professional gradient backgrounds */
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  }
+
+  .bg-gradient-muted {
+    background: linear-gradient(135deg, var(--color-muted), var(--color-card));
+  }
+}
+
+/* Accessibility and reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Enhanced responsive design with mobile-first approach */
+@media (max-width: 640px) {
+  /* Mobile-specific optimizations */
+  .container {
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
+  }
+
+  /* Reduced hover effects on mobile */
+  .hover-lift:hover,
+  .hover-scale:hover {
+    transform: none;
+  }
+
+  /* Better touch targets on mobile */
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .container {
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+}
+
+/* Desktop enhancements */
+@media (min-width: 1025px) {
+  .container {
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+  }
+
+  /* Enhanced hover effects for desktop */
+  .hover-lift:hover {
+    transform: translateY(-6px);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.08);
+  }
+}
+
+/* High contrast mode support for accessibility */
+@media (prefers-contrast: high) {
+  :root {
+    --border: oklch(0.5 0 0);
+    --ring: oklch(0.3 0 0);
+  }
+
+  .dark {
+    --border: oklch(0.7 0 0);
+    --ring: oklch(0.8 0 0);
+  }
+}
+
+/* Print styles for better document printing */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Newsletter Subscription Schema",
+  "description": "Validation schema for newsletter subscriptions",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 100,
+      "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+      "description": "Valid email address for newsletter subscription"
+    },
+    "preferences": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["career-tips", "job-alerts", "success-stories", "industry-news", "events"]
+      },
+      "uniqueItems": true,
+      "minItems": 1,
+      "description": "Newsletter content preferences"
+    },
+    "frequency": {
+      "type": "string",
+      "enum": ["daily", "weekly", "monthly"],
+      "default": "weekly",
+      "description": "Email frequency preference"
+    }
+  },
+  "required": ["email"],
+  "additionalProperties": false
+}

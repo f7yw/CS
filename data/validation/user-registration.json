@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User Registration Schema",
+  "description": "Validation schema for user registration and account creation",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 50,
+      "pattern": "^[a-zA-Z\\s'-]+$",
+      "description": "Full name with letters, spaces, hyphens, and apostrophes only"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 100,
+      "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+      "description": "Valid email address"
+    },
+    "password": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128,
+      "pattern": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
+      "description": "Password must contain at least 8 characters, one uppercase, one lowercase, one number, and one special character"
+    },
+    "userType": {
+      "type": "string",
+      "enum": ["student", "graduate", "professional"],
+      "description": "User category for personalized experience"
+    },
+    "dateOfBirth": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of birth in YYYY-MM-DD format"
+    },
+    "phoneNumber": {
+      "type": "string",
+      "pattern": "^[+]?[1-9]\\d{1,14}$",
+      "description": "Valid international phone number"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 50,
+      "description": "Country of residence"
+    },
+    "agreeToTerms": {
+      "type": "boolean",
+      "const": true,
+      "description": "Must agree to terms and conditions"
+    }
+  },
+  "required": ["name", "email", "password", "userType", "agreeToTerms"],
+  "additionalProperties": false
+}

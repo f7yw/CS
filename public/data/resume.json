@@ -1,0 +1,126 @@
+{
+    "stats": [
+    { "value": "6 seconds", "label": "Average time a recruiter spends reviewing each resume", "accent": "blue" },
+    { "value": "75%", "label": "Resumes are filtered out by Applicant Tracking Systems (ATS) before reaching a human", "accent": "green" },
+    { "value": "1–2 pages", "label": "The ideal resume length preferred by most employers", "accent": "purple" }
+    ],
+    
+    "sections": [
+    {
+        "title": "Contact Information",
+        "description": "Your resume should begin with clear, professional contact details so employers can easily reach you.",
+        "tips": [
+        "Always include your full name, phone number, and a professional email address",
+        "Add links to LinkedIn or an online portfolio if available",
+        "Avoid using casual or outdated email addresses (e.g., coolguy123@gmail.com)",
+        "Listing your city and state is enough — no need for a full street address"
+        ],
+        "example": "John Smith | (555) 123-4567 | john.smith@email.com | linkedin.com/in/johnsmith"
+    },
+    {
+        "title": "Professional Summary",
+        "description": "A short introduction that highlights your career strengths and makes you stand out at first glance.",
+        "tips": [
+        "Keep it to 2–3 sentences that summarize your experience and skills",
+        "Tailor the summary to each job you apply for",
+        "Use important keywords from the job description to pass ATS filters",
+        "Focus on how you can benefit the company, not just your career goals"
+        ],
+        "example": "Dynamic marketing professional with 5+ years of experience in digital strategy and brand growth. Skilled in driving engagement, increasing revenue, and leading cross-functional teams to deliver measurable results."
+    },
+    {
+        "title": "Work Experience",
+        "description": "Showcase your career history with a focus on measurable achievements.",
+        "tips": [
+        "List positions in reverse chronological order (most recent first)",
+        "Use action verbs such as 'Led', 'Developed', 'Achieved', and 'Improved'",
+        "Quantify your impact with specific metrics (e.g., 20% sales growth, $1M budget managed)",
+        "Highlight accomplishments rather than just listing responsibilities"
+        ],
+        "example": "Marketing Specialist | ABC Company | 2020–2023\n• Increased social media engagement by 45% through targeted campaigns\n• Managed a $50K annual budget and improved ROI by 25%"
+    },
+    {
+        "title": "Education",
+        "description": "Provide details about your academic background and relevant qualifications.",
+        "tips": [
+        "Include your degree, field of study, university name, and graduation year",
+        "Mention GPA only if it is strong (3.5 or higher)",
+        "Add honors, scholarships, or notable coursework if relevant",
+        "Include certifications, workshops, or online training related to the job"
+        ],
+        "example": "Bachelor of Science in Marketing | University of California | 2020\nHonors: Dean’s List, Digital Marketing Excellence Award"
+    },
+    {
+        "title": "Skills",
+        "description": "Highlight your most relevant technical and interpersonal skills.",
+        "tips": [
+        "Separate technical skills (software, tools, programming languages) from soft skills (communication, leadership)",
+        "Be honest about proficiency levels (Beginner, Intermediate, Advanced)",
+        "Match your skills to the requirements in the job posting",
+        "Use clear, industry-standard terminology"
+        ],
+        "example": "Technical: Adobe Creative Suite (Advanced), Google Analytics (Proficient), SQL (Intermediate)\nSoft Skills: Team Leadership, Strategic Planning, Communication"
+    }
+    ],
+  "templates": [
+    {
+      "name": "Entry Level Template",
+      "description": "Perfect for recent graduates and career starters",
+      "features": ["Clean, professional design", "Education-focused layout", "Skills section emphasis"],
+      "fileUrl": "/downloads/resume/resume-template-entry-level.pdf",
+      "format": "PDF",
+      "size": "180 KB"
+    },
+    {
+      "name": "Experienced Professional",
+      "description": "Ideal for professionals with 3+ years experience",
+      "features": ["Experience-focused layout", "Achievement highlights", "Leadership emphasis"],
+      "fileUrl": "/downloads/resume/resume-template-experienced.docx",
+      "format": "DOCX",
+      "size": "200 KB"
+    },
+    {
+      "name": "Creative Industries",
+      "description": "Designed for creative and design professionals",
+      "features": ["Visual appeal", "Portfolio integration", "Creative layout options"],
+      "fileUrl": "/downloads/resume/resume-template-creative.pdf",
+      "format": "PDF",
+      "size": "210 KB"
+    },
+    {
+      "name": "Resume Template (ATS-Friendly)",
+      "description": "Clean, ATS-safe DOCX template for quick editing.",
+      "features": ["ATS-safe formatting", "One-page layout", "Easy to edit"],
+      "fileUrl": "/downloads/resume/resume-template.docx",
+      "format": "DOCX",
+      "size": "64 KB"
+    },
+    {
+      "name": "Modern One-Page Resume",
+      "description": "Minimalist, one-page design that balances readability and style.",
+      "features": ["ATS-safe formatting", "One-page layout", "Easy to edit"],
+      "fileUrl": "/downloads/resume/resume-template.docx",
+      "format": "DOCX",
+      "size": "64 KB"
+    },
+    {
+      "name": "Cover Letter Template",
+      "description": "Matching cover letter template designed to complement your resume.",
+      "features": ["ATS-safe formatting", "One-page layout", "Easy to edit"],
+      "fileUrl": "/downloads/resume/resume-template-p.pdf",
+      "format": "PDF",
+      "size": "64 KB"
+    }
+  ],
+    "commonMistakes": [
+    "Using an unprofessional or outdated email address (e.g., nicknames, casual handles)",
+    "Including unnecessary personal details such as age, marital status, or a photo (unless specifically requested)",
+    "Making the resume too long — more than 2 pages for most roles",
+    "Using vague or passive wording instead of strong action verbs (e.g., 'responsible for' vs. 'led')",
+    "Failing to back up achievements with measurable results (percentages, numbers, revenue impact)",
+    "Listing outdated, irrelevant, or basic skills (e.g., 'Microsoft Word' as a skill for professionals)",
+    "Using inconsistent formatting, poor alignment, or too many font styles",
+    "Spelling, grammar, or punctuation errors that create a negative impression"
+    ]
+
+}
