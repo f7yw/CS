@@ -359,4 +359,169 @@
       }
     ]
   }
+  ,
+  {
+    "quizId": "quiz_personality",
+    "interest": "Personality Assessment",
+    "description": "Discover your work and thinking style through a personality quiz.",
+    "questions": [
+      { "id": "p1", "text": "When working on a project, you prefer to:", "type": "single", "choices": [
+        { "id": "a", "text": "Work independently and set your own pace", "score": 1 },
+        { "id": "b", "text": "Collaborate closely with team members", "score": 2 },
+        { "id": "c", "text": "Lead the team and delegate tasks", "score": 3 },
+        { "id": "d", "text": "Follow detailed instructions and guidelines", "score": 4 }
+      ]},
+      { "id": "p2", "text": "In problem-solving situations, you typically:", "type": "single", "choices": [
+        { "id": "a", "text": "Analyze data and use logical reasoning", "score": 1 },
+        { "id": "b", "text": "Brainstorm creative and innovative solutions", "score": 2 },
+        { "id": "c", "text": "Seek input from others and build consensus", "score": 3 },
+        { "id": "d", "text": "Make quick decisions based on intuition", "score": 4 }
+      ]},
+      { "id": "p3", "text": "Your ideal work environment would be:", "type": "single", "choices": [
+        { "id": "a", "text": "A quiet office where you can focus deeply", "score": 1 },
+        { "id": "b", "text": "An open space with lots of interaction", "score": 2 },
+        { "id": "c", "text": "A dynamic environment with changing challenges", "score": 3 },
+        { "id": "d", "text": "A structured setting with clear procedures", "score": 4 }
+      ]},
+      { "id": "p4", "text": "When learning new skills, you prefer to:", "type": "single", "choices": [
+        { "id": "a", "text": "Read manuals and study theoretical concepts", "score": 1 },
+        { "id": "b", "text": "Learn through hands-on practice and experimentation", "score": 2 },
+        { "id": "c", "text": "Watch demonstrations and follow examples", "score": 3 },
+        { "id": "d", "text": "Discuss concepts with mentors and peers", "score": 4 }
+      ]},
+      { "id": "p5", "text": "Your approach to deadlines is typically:", "type": "single", "choices": [
+        { "id": "a", "text": "Plan ahead and complete tasks early", "score": 1 },
+        { "id": "b", "text": "Work steadily and finish on time", "score": 2 },
+        { "id": "c", "text": "Work best under pressure near the deadline", "score": 3 },
+        { "id": "d", "text": "Break large tasks into smaller, manageable pieces", "score": 4 }
+      ]}
+    ],
+    "mappings": [
+      { "minScore": 5, "maxScore": 10, "recommendation": "You are a thoughtful and analytical person who values structure and planning.", "suggestedCareers": ["Engineer", "Accountant", "Researcher"], "nextSteps": ["Explore structured work environments", "Consider technical or analytical roles"] },
+      { "minScore": 11, "maxScore": 15, "recommendation": "You are creative and collaborative, thriving in dynamic and social settings.", "suggestedCareers": ["Designer", "Team Leader", "Consultant"], "nextSteps": ["Seek out creative projects", "Join collaborative teams"] },
+      { "minScore": 16, "maxScore": 20, "recommendation": "You are a natural leader and innovator, excelling in fast-paced and challenging environments.", "suggestedCareers": ["Manager", "Entrepreneur", "Project Director"], "nextSteps": ["Pursue leadership opportunities", "Start your own project"] }
+    ]
+  },
+  {
+    "quizId": "quiz_interests",
+    "interest": "Interests Assessment",
+    "description": "Find out which career fields match your interests.",
+    "questions": [
+      { "id": "i1", "text": "How interested are you in designing and building technological solutions?", "type": "single", "choices": [
+        { "id": "a", "text": "Very interested - I love creating tech solutions", "score": 5 },
+        { "id": "b", "text": "Somewhat interested - I enjoy technical challenges", "score": 4 },
+        { "id": "c", "text": "Moderately interested - It's okay but not my passion", "score": 3 },
+        { "id": "d", "text": "Slightly interested - I prefer other activities", "score": 2 },
+        { "id": "e", "text": "Not interested - Technology isn't appealing to me", "score": 1 }
+      ]},
+      { "id": "i2", "text": "How interested are you in helping people with their health and medical needs?", "type": "single", "choices": [
+        { "id": "a", "text": "Very interested - I'm passionate about healthcare", "score": 5 },
+        { "id": "b", "text": "Somewhat interested - I like helping people heal", "score": 4 },
+        { "id": "c", "text": "Moderately interested - It's meaningful work", "score": 3 },
+        { "id": "d", "text": "Slightly interested - I prefer other ways to help", "score": 2 },
+        { "id": "e", "text": "Not interested - Medical field doesn't appeal to me", "score": 1 }
+      ]},
+      { "id": "i3", "text": "How interested are you in managing finances, investments, or business operations?", "type": "single", "choices": [
+        { "id": "a", "text": "Very interested - I love business strategy and finance", "score": 5 },
+        { "id": "b", "text": "Somewhat interested - Numbers and markets fascinate me", "score": 4 },
+        { "id": "c", "text": "Moderately interested - It's practical and useful", "score": 3 },
+        { "id": "d", "text": "Slightly interested - I prefer more creative work", "score": 2 },
+        { "id": "e", "text": "Not interested - Business doesn't motivate me", "score": 1 }
+      ]},
+      { "id": "i4", "text": "How interested are you in teaching, training, or developing others?", "type": "single", "choices": [
+        { "id": "a", "text": "Very interested - I love sharing knowledge and mentoring", "score": 5 },
+        { "id": "b", "text": "Somewhat interested - I enjoy helping others learn", "score": 4 },
+        { "id": "c", "text": "Moderately interested - Teaching can be rewarding", "score": 3 },
+        { "id": "d", "text": "Slightly interested - I prefer learning to teaching", "score": 2 },
+        { "id": "e", "text": "Not interested - Education field doesn't suit me", "score": 1 }
+      ]},
+      { "id": "i5", "text": "How interested are you in creative expression through art, design, or media?", "type": "single", "choices": [
+        { "id": "a", "text": "Very interested - Creativity is my passion", "score": 5 },
+        { "id": "b", "text": "Somewhat interested - I enjoy artistic pursuits", "score": 4 },
+        { "id": "c", "text": "Moderately interested - Art is nice but not central", "score": 3 },
+        { "id": "d", "text": "Slightly interested - I appreciate art but don't create", "score": 2 },
+        { "id": "e", "text": "Not interested - Creative fields don't appeal to me", "score": 1 }
+      ]},
+      { "id": "i6", "text": "How interested are you in conducting research and advancing scientific knowledge?", "type": "single", "choices": [
+        { "id": "a", "text": "Very interested - I love discovery and research", "score": 5 },
+        { "id": "b", "text": "Somewhat interested - Science fascinates me", "score": 4 },
+        { "id": "c", "text": "Moderately interested - Research can be engaging", "score": 3 },
+        { "id": "d", "text": "Slightly interested - I prefer applied over theoretical", "score": 2 },
+        { "id": "e", "text": "Not interested - Research doesn't motivate me", "score": 1 }
+      ]},
+      { "id": "i7", "text": "How interested are you in addressing social issues and helping communities?", "type": "single", "choices": [
+        { "id": "a", "text": "Very interested - Social impact is my priority", "score": 5 },
+        { "id": "b", "text": "Somewhat interested - I want to make a difference", "score": 4 },
+        { "id": "c", "text": "Moderately interested - Helping others is important", "score": 3 },
+        { "id": "d", "text": "Slightly interested - I prefer indirect ways to help", "score": 2 },
+        { "id": "e", "text": "Not interested - Social work doesn't suit me", "score": 1 }
+      ]},
+      { "id": "i8", "text": "How interested are you in legal systems, policy-making, or governance?", "type": "single", "choices": [
+        { "id": "a", "text": "Very interested - Law and policy fascinate me", "score": 5 },
+        { "id": "b", "text": "Somewhat interested - I like debate and justice", "score": 4 },
+        { "id": "c", "text": "Moderately interested - Legal work seems important", "score": 3 },
+        { "id": "d", "text": "Slightly interested - I prefer less formal structures", "score": 2 },
+        { "id": "e", "text": "Not interested - Legal field doesn't appeal to me", "score": 1 }
+      ]}
+    ],
+    "mappings": [
+      { "minScore": 8, "maxScore": 16, "recommendation": "You have a variety of interests. Explore different fields to find your passion.", "suggestedCareers": ["Generalist", "Consultant", "Advisor"], "nextSteps": ["Try internships in different fields", "Attend career fairs"] },
+      { "minScore": 17, "maxScore": 32, "recommendation": "You have clear interests in specific fields. Focus on developing skills in those areas.", "suggestedCareers": ["Specialist", "Field Expert", "Researcher"], "nextSteps": ["Take advanced courses", "Join professional groups"] },
+      { "minScore": 33, "maxScore": 40, "recommendation": "You are highly passionate about your interests. Pursue leadership or innovation roles in your favorite field.", "suggestedCareers": ["Leader", "Innovator", "Entrepreneur"], "nextSteps": ["Start your own project", "Mentor others"] }
+    ]
+  },
+  {
+    "quizId": "quiz_skills",
+    "interest": "Skills Assessment",
+    "description": "Evaluate your core professional and personal skills.",
+    "questions": [
+      { "id": "s1", "text": "How would you rate your ability to analyze complex problems and break them down into manageable parts?", "type": "single", "choices": [
+        { "id": "a", "text": "Expert - I excel at complex analysis and logical reasoning", "score": 5 },
+        { "id": "b", "text": "Advanced - I'm very good at analytical thinking", "score": 4 },
+        { "id": "c", "text": "Intermediate - I can handle moderate analytical tasks", "score": 3 },
+        { "id": "d", "text": "Beginner - I'm developing my analytical skills", "score": 2 },
+        { "id": "e", "text": "Novice - Analytical thinking is challenging for me", "score": 1 }
+      ]},
+      { "id": "s2", "text": "How would you rate your ability to communicate ideas clearly and persuasively?", "type": "single", "choices": [
+        { "id": "a", "text": "Expert - I'm an excellent communicator in all formats", "score": 5 },
+        { "id": "b", "text": "Advanced - I communicate very effectively", "score": 4 },
+        { "id": "c", "text": "Intermediate - I can communicate adequately", "score": 3 },
+        { "id": "d", "text": "Beginner - I'm working on my communication skills", "score": 2 },
+        { "id": "e", "text": "Novice - Communication is difficult for me", "score": 1 }
+      ]},
+      { "id": "s3", "text": "How would you rate your ability to lead teams and inspire others?", "type": "single", "choices": [
+        { "id": "a", "text": "Expert - I'm a natural leader who inspires others", "score": 5 },
+        { "id": "b", "text": "Advanced - I lead effectively in most situations", "score": 4 },
+        { "id": "c", "text": "Intermediate - I can lead when needed", "score": 3 },
+        { "id": "d", "text": "Beginner - I'm developing leadership skills", "score": 2 },
+        { "id": "e", "text": "Novice - Leadership doesn't come naturally to me", "score": 1 }
+      ]},
+      { "id": "s4", "text": "How would you rate your technical and digital literacy skills?", "type": "single", "choices": [
+        { "id": "a", "text": "Expert - I master new technologies quickly", "score": 5 },
+        { "id": "b", "text": "Advanced - I'm very comfortable with technology", "score": 4 },
+        { "id": "c", "text": "Intermediate - I can handle standard tech tasks", "score": 3 },
+        { "id": "d", "text": "Beginner - I'm learning technical skills", "score": 2 },
+        { "id": "e", "text": "Novice - Technology is challenging for me", "score": 1 }
+      ]},
+      { "id": "s5", "text": "How would you rate your ability to generate innovative ideas and creative solutions?", "type": "single", "choices": [
+        { "id": "a", "text": "Expert - I consistently generate innovative solutions", "score": 5 },
+        { "id": "b", "text": "Advanced - I'm very creative and original", "score": 4 },
+        { "id": "c", "text": "Intermediate - I can be creative when needed", "score": 3 },
+        { "id": "d", "text": "Beginner - I'm developing my creative abilities", "score": 2 },
+        { "id": "e", "text": "Novice - Creativity doesn't come easily to me", "score": 1 }
+      ]},
+      { "id": "s6", "text": "How would you rate your ability to plan, organize, and execute projects?", "type": "single", "choices": [
+        { "id": "a", "text": "Expert - I excel at managing complex projects", "score": 5 },
+        { "id": "b", "text": "Advanced - I'm very good at project organization", "score": 4 },
+        { "id": "c", "text": "Intermediate - I can manage standard projects", "score": 3 },
+        { "id": "d", "text": "Beginner - I'm learning project management", "score": 2 },
+        { "id": "e", "text": "Novice - Project management is challenging for me", "score": 1 }
+      ]}
+    ],
+    "mappings": [
+      { "minScore": 6, "maxScore": 15, "recommendation": "You have a good foundation in key skills. Keep developing your abilities.", "suggestedCareers": ["Assistant", "Coordinator", "Support Specialist"], "nextSteps": ["Take skill-building workshops", "Seek mentorship"] },
+      { "minScore": 16, "maxScore": 24, "recommendation": "You are skilled in several areas. Consider specializing or taking on more responsibility.", "suggestedCareers": ["Specialist", "Team Lead", "Trainer"], "nextSteps": ["Pursue certifications", "Lead small projects"] },
+      { "minScore": 25, "maxScore": 30, "recommendation": "You are highly skilled and ready for advanced roles. Aim for leadership or expert positions.", "suggestedCareers": ["Manager", "Expert", "Consultant"], "nextSteps": ["Apply for advanced roles", "Mentor others"] }
+    ]
+  }
 ]
