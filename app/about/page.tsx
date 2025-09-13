@@ -44,22 +44,27 @@ export default function AboutPage() {
 
   const team = [
     {
-      name: "Dr. Sarah Ahmed",
+      name: "Dr. FARES",
       role: "Founder & CEO",
       bio: "Former career counselor with 15+ years experience helping students and professionals find their path.",
-      image: "/professional-woman-headshot.png",
+      image: "/Fares.jpg",
     },
     {
-      name: "Michael Chen",
+      name: "Eng. ABDULRAHMAN",
       role: "Head of Technology",
       bio: "Tech industry veteran passionate about using AI to democratize career guidance worldwide.",
-      image: "/professional-man-headshot.png",
+      image: "/ABOOD.jpg",
     },
     {
-      name: "Dr. Fatima Al-Rashid",
+      name: "Eng. OMAR",
       role: "Chief Learning Officer",
       bio: "Educational psychologist specializing in career development and student success strategies.",
-      image: "/professional-woman-headshot.png",
+      image: "/AOMER.jpg",
+    },{
+    name: "Eng. AL-BRAA",
+      role: "Chief Learning Officer",
+      bio: "Educational psychologist specializing in career development and student success strategies.",
+      image: "/ALBRA.jpg",
     },
   ]
 
@@ -193,7 +198,7 @@ export default function AboutPage() {
               <Card key={idx} className="text-center border-border bg-card/50 backdrop-blur-sm card-hover">
                 <CardContent className="p-6">
                   <img
-                    src={member.image || "/placeholder.svg"}
+                    src={member.image || "/ABOOD.jpg"}
                     alt={member.name}
                     className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
                   />
