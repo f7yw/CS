@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
-import { Mail, ArrowLeft, Shield, CheckCircle } from "lucide-react"
+import { Mail, ArrowLeft, Shield, CheckCircle, TrendingUp } from "lucide-react"
 import Link from "next/link"
 import { useToast } from "@/hooks/use-toast"
 import { validateEmail, sanitizeInput } from "@/lib/validation"
@@ -70,8 +70,15 @@ export default function ForgotPasswordPage() {
       const code = Math.floor(100000 + Math.random() * 900000).toString()
       setGeneratedCode(code)
 
-      // Simulate sending email with verification code
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      const response = await fetch("/api/auth/forgot-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: formData.email, code }),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to send reset code")
+      }
 
       // Store password reset request
       const resetRequests = JSON.parse(localStorage.getItem("password_reset_requests") || "[]")
@@ -83,30 +90,6 @@ export default function ForgotPasswordPage() {
         used: false,
       })
       localStorage.setItem("password_reset_requests", JSON.stringify(resetRequests))
-
-      // Simulate email sending to farisatif7780@gmail.com
-      const emailData = {
-        to: "farisatif7780@gmail.com",
-        cc: formData.email,
-        subject: `Password Reset Code for ${formData.email}`,
-        template: "password-reset",
-        data: {
-          userEmail: formData.email,
-          resetCode: code,
-          siteName: "NextStep Navigator",
-          expiryTime: "15 minutes",
-        },
-      }
-
-      // Store email for admin notification
-      const emails = JSON.parse(localStorage.getItem("outgoing_emails") || "[]")
-      emails.push({
-        ...emailData,
-        timestamp: new Date().toISOString(),
-        status: "sent",
-        type: "password_reset",
-      })
-      localStorage.setItem("outgoing_emails", JSON.stringify(emails))
 
       toast({
         title: "Verification code sent!",
@@ -192,7 +175,19 @@ export default function ForgotPasswordPage() {
     setIsLoading(true)
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      const response = await fetch("/api/auth/reset-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: formData.email,
+          code: formData.resetCode,
+          newPassword: formData.newPassword,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to reset password")
+      }
 
       // Update user password in storage
       const storedUsers = JSON.parse(localStorage.getItem("registered_users") || "[]")
@@ -237,25 +232,28 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background flex items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6">
         {/* Back navigation */}
         <Link
           href="/auth/login"
-          className="inline-flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+          className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back to Login
         </Link>
 
-        <Card className="dark:bg-gray-800 shadow-xl">
+        <Card className="border-border bg-card/50 backdrop-blur-sm shadow-xl">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mx-auto mb-4">
+              <TrendingUp className="h-6 w-6 text-primary" />
+            </div>
+            <CardTitle className="text-2xl font-heading font-bold">
               {step === "email" && "Reset Your Password"}
               {step === "code" && "Enter Verification Code"}
               {step === "reset" && "Create New Password"}
             </CardTitle>
-            <CardDescription className="dark:text-gray-300">
+            <CardDescription>
               {step === "email" && "Enter your email address to receive a verification code"}
               {step === "code" && "We've sent a 6-digit code to your email"}
               {step === "reset" && "Enter your new password below"}
@@ -267,29 +265,23 @@ export default function ForgotPasswordPage() {
             {step === "email" && (
               <form onSubmit={handleSendCode} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-gray-700 dark:text-gray-300">
-                    Email Address
-                  </Label>
+                  <Label htmlFor="email">Email Address</Label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input
                       id="email"
                       type="email"
                       value={formData.email}
                       onChange={(e) => handleInputChange("email", e.target.value)}
                       placeholder="your.email@example.com"
-                      className="pl-10 dark:bg-gray-700 dark:text-white"
+                      className="pl-10 bg-background"
                       required
                     />
                   </div>
-                  {errors.email && <p className="text-sm text-red-600 dark:text-red-400">{errors.email}</p>}
+                  {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
                 </div>
 
-                <Button
-                  type="submit"
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white"
-                  disabled={isLoading}
-                >
+                <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={isLoading}>
                   {isLoading ? "Sending Code..." : "Send Verification Code"}
                 </Button>
               </form>
@@ -299,31 +291,25 @@ export default function ForgotPasswordPage() {
             {step === "code" && (
               <form onSubmit={handleVerifyCode} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="resetCode" className="text-gray-700 dark:text-gray-300">
-                    Verification Code
-                  </Label>
+                  <Label htmlFor="resetCode">Verification Code</Label>
                   <div className="relative">
-                    <Shield className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    <Shield className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input
                       id="resetCode"
                       type="text"
                       value={formData.resetCode}
                       onChange={(e) => handleInputChange("resetCode", e.target.value)}
                       placeholder="Enter 6-digit code"
-                      className="pl-10 text-center text-lg tracking-widest dark:bg-gray-700 dark:text-white"
+                      className="pl-10 text-center text-lg tracking-widest bg-background"
                       maxLength={6}
                       required
                     />
                   </div>
-                  {errors.resetCode && <p className="text-sm text-red-600 dark:text-red-400">{errors.resetCode}</p>}
-                  <p className="text-xs text-gray-500 dark:text-gray-400 text-center">Code expires in 15 minutes</p>
+                  {errors.resetCode && <p className="text-sm text-destructive">{errors.resetCode}</p>}
+                  <p className="text-xs text-muted-foreground text-center">Code expires in 15 minutes</p>
                 </div>
 
-                <Button
-                  type="submit"
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white"
-                  disabled={isLoading}
-                >
+                <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={isLoading}>
                   {isLoading ? "Verifying..." : "Verify Code"}
                 </Button>
 
@@ -337,44 +323,34 @@ export default function ForgotPasswordPage() {
             {step === "reset" && (
               <form onSubmit={handleResetPassword} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="newPassword" className="text-gray-700 dark:text-gray-300">
-                    New Password
-                  </Label>
+                  <Label htmlFor="newPassword">New Password</Label>
                   <Input
                     id="newPassword"
                     type="password"
                     value={formData.newPassword}
                     onChange={(e) => handleInputChange("newPassword", e.target.value)}
                     placeholder="Enter new password"
-                    className="dark:bg-gray-700 dark:text-white"
+                    className="bg-background"
                     required
                   />
-                  {errors.newPassword && <p className="text-sm text-red-600 dark:text-red-400">{errors.newPassword}</p>}
+                  {errors.newPassword && <p className="text-sm text-destructive">{errors.newPassword}</p>}
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="confirmPassword" className="text-gray-700 dark:text-gray-300">
-                    Confirm New Password
-                  </Label>
+                  <Label htmlFor="confirmPassword">Confirm New Password</Label>
                   <Input
                     id="confirmPassword"
                     type="password"
                     value={formData.confirmPassword}
                     onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
                     placeholder="Confirm new password"
-                    className="dark:bg-gray-700 dark:text-white"
+                    className="bg-background"
                     required
                   />
-                  {errors.confirmPassword && (
-                    <p className="text-sm text-red-600 dark:text-red-400">{errors.confirmPassword}</p>
-                  )}
+                  {errors.confirmPassword && <p className="text-sm text-destructive">{errors.confirmPassword}</p>}
                 </div>
 
-                <Button
-                  type="submit"
-                  className="w-full bg-green-600 hover:bg-green-700 text-white"
-                  disabled={isLoading}
-                >
+                <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={isLoading}>
                   <CheckCircle className="h-4 w-4 mr-2" />
                   {isLoading ? "Updating Password..." : "Update Password"}
                 </Button>

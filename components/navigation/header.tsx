@@ -74,6 +74,27 @@ const navigationItems: NavigationItem[] = [
     userTypes: ["student", "graduate", "professional"],
   },
   {
+    title: "Contact",
+    href: "/contact",
+    description: "Get in touch with our team",
+    icon: <Phone className="h-4 w-4" />,
+    userTypes: ["student", "graduate", "professional"],
+  },
+  {
+    title: "About",
+    href: "/about",
+    description: "Learn about our mission",
+    icon: <Info className="h-4 w-4" />,
+    userTypes: ["student", "graduate", "professional"],
+  },
+  {
+    title: "Feedback",
+    href: "/feedback",
+    description: "Share your experience with us",
+    icon: <MessageSquare className="h-4 w-4" />,
+    userTypes: ["student", "graduate", "professional"],
+  },
+  {
     title: "Success Stories",
     href: "/stories",
     description: "Inspiring journeys from professionals",
@@ -308,7 +329,7 @@ export function Header() {
               <NavigationMenu className="hidden lg:flex">
                 <NavigationMenuList>
                   {getFilteredNavItems()
-                    .slice(0, 4)
+                    .slice(0, 6)
                     .map((item) => (
                       <NavigationMenuItem key={item.href}>
                         <NavigationMenuLink asChild>
@@ -350,16 +371,10 @@ export function Header() {
                             desc: "Master your interview skills",
                           },
                           {
-                            href: "/contact",
+                            href: "/help",
                             icon: Phone,
-                            title: "Contact Us",
-                            desc: "Get in touch with our team",
-                          },
-                          {
-                            href: "/about",
-                            icon: Info,
-                            title: "About Us",
-                            desc: "Learn about our mission",
+                            title: "Help Center",
+                            desc: "Get support and assistance",
                           },
                         ].map((link) => (
                           <Link

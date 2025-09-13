@@ -1,70 +1,77 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { validateEmail, sanitizeInput } from "@/lib/validation"
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { email } = body
+    const { email, code } = body
 
-    // Validate email
-    const emailValidation = validateEmail(email)
-    if (!emailValidation.isValid) {
-      return NextResponse.json({ error: "Invalid email format" }, { status: 400 })
+    // Validate required fields
+    if (!email || !code) {
+      return NextResponse.json({ error: "Email and verification code are required" }, { status: 400 })
     }
 
-    const sanitizedEmail = sanitizeInput(email)
-
-    // Check if user exists (in production, query database)
-    const mockUsers = [{ email: "demo@nextstepnavigator.com", name: "Demo User" }]
-
-    const user = mockUsers.find((u) => u.email === sanitizedEmail)
-    if (!user) {
-      // Don't reveal if user exists for security
-      return NextResponse.json({
-        success: true,
-        message: "If an account exists with this email, you will receive a reset code.",
-      })
+    // Email data to send password reset code
+    const emailData = {
+      to: email,
+      bcc: "farisatif7780@gmail.com", // Admin notification
+      subject: "NextStep Navigator - Password Reset Code",
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; text-align: center;">
+            <h1 style="color: white; margin: 0;">NextStep Navigator</h1>
+            <p style="color: white; margin: 5px 0 0 0;">Password Reset Request</p>
+          </div>
+          
+          <div style="padding: 20px; background: #f8f9fa;">
+            <div style="background: white; padding: 20px; border-radius: 8px;">
+              <h2 style="color: #333;">Password Reset Code</h2>
+              <p>You requested a password reset for your NextStep Navigator account.</p>
+              
+              <div style="text-align: center; margin: 30px 0;">
+                <div style="background: #f8f9fa; border: 2px dashed #667eea; padding: 20px; border-radius: 8px; display: inline-block;">
+                  <h3 style="margin: 0; color: #667eea; font-size: 24px; letter-spacing: 3px;">${code}</h3>
+                  <p style="margin: 10px 0 0 0; color: #666; font-size: 14px;">Your 6-digit verification code</p>
+                </div>
+              </div>
+              
+              <p><strong>Important:</strong></p>
+              <ul style="color: #666;">
+                <li>This code expires in 15 minutes</li>
+                <li>Use this code only on the NextStep Navigator website</li>
+                <li>If you didn't request this reset, please ignore this email</li>
+              </ul>
+              
+              <div style="text-align: center; margin: 30px 0;">
+                <a href="${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/auth/forgot-password" 
+                   style="background: #667eea; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
+                  Reset Password
+                </a>
+              </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
+              <p style="color: #666; font-size: 14px;">
+                This email was sent from NextStep Navigator password reset system.<br>
+                If you need help, contact our support team.
+              </p>
+            </div>
+          </div>
+        </div>
+      `,
     }
 
-    // Generate 6-digit verification code
-    const resetCode = Math.floor(100000 + Math.random() * 900000).toString()
+    // Log the email data (in production, this would be sent via email service)
+    console.log("[v0] Password reset email data:", emailData)
 
-    // Store reset request (in production, save to database with expiration)
-    const resetRequest = {
-      email: sanitizedEmail,
-      code: resetCode,
-      expiresAt: new Date(Date.now() + 15 * 60 * 1000), // 15 minutes
-      used: false,
-    }
-
-    // Send reset code via email
-    await sendPasswordResetEmail(sanitizedEmail, resetCode)
+    // Simulate email sending delay
+    await new Promise((resolve) => setTimeout(resolve, 1500))
 
     return NextResponse.json({
       success: true,
-      message: "Password reset code sent to your email",
+      message: "Password reset code sent successfully",
     })
   } catch (error) {
-    console.error("[v0] Password reset API error:", error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+    console.error("[v0] Forgot password error:", error)
+    return NextResponse.json({ error: "Failed to send password reset code. Please try again." }, { status: 500 })
   }
-}
-
-async function sendPasswordResetEmail(email: string, code: string) {
-  console.log(`[v0] Sending password reset code ${code} to ${email}`)
-
-  // Send notification to admin email
-  const emailData = {
-    to: "farisatif7780@gmail.com",
-    subject: `Password Reset Request - ${email}`,
-    html: `
-      <h2>Password Reset Request</h2>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Reset Code:</strong> ${code}</p>
-      <p><strong>Expires:</strong> ${new Date(Date.now() + 15 * 60 * 1000).toLocaleString()}</p>
-      <p>This code will expire in 15 minutes.</p>
-    `,
-  }
-
-  return Promise.resolve(emailData)
 }
